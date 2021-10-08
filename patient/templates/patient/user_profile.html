@@ -1,0 +1,176 @@
+{% extends 'patient/pat_master.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+     {% comment %} <link rel="stylesheet" href="{% static 'patient/css/nav_extra.css' %}"> {% endcomment %}
+    <style>
+    body{
+      background-color:whitesmoke;
+    }
+     .error{
+       color:red;
+     } 
+       #id_gender{
+            list-style-type: None;
+            display: inline-flex;
+            padding-left:0px;
+        }
+        #id_gender_1{
+            margin-left: 30px;
+        }
+        #set{
+          margin-top:0px;
+        }
+    </style>
+{% endblock css_link %}
+
+{% block header %}
+  <div>{% include 'patient/success_nav.html' %}</div>
+{% endblock header %}
+
+<div class="form-outline">
+{{form.username}}
+<label class="form-label" for="form1">{{form.username.label_tag}}</label>
+</div>
+
+{% block alldata %}
+{% comment %} {% include 'patient/nav2.html' %} {% endcomment %}
+{% comment %} {% include 'secure/sidebar' %} {% endcomment %}
+<div class="container mt-5">
+  <div class="row">
+    {% comment %} <div class="col-sm-3 mt-5">
+      <p>wrofhwer owh</p>
+    </div> {% endcomment %}
+    <div class="col-sm-7 pb-4">
+    <!---##################################-->
+      <form action="" method="POST" style="background-color:white;" class="border border-start p-5 mt-5" enctype="multipart/form-data" novalidate>
+    <div class="h3 float-left">Profile Settinngs</div>
+    {% if profile %}
+      {% for pf in profile %}
+        {{pf.non_field_error}}
+      {% endfor %}
+    {% endif %}
+    
+    {% if messages %}
+      {% for mes in messages %}
+        <div class="alert alert-success">{{mes}}</div>
+      {% endfor %}
+    {% endif %}
+        {% csrf_token %}
+      <img src="{{request.user.profile.ur}}" alt="" srcset="">
+      {% comment %} <div class="form-check">
+        {{profile.gender}}
+      </div> {% endcomment %}
+      {% comment %} <div class="error">{{profile.gender.errors|striptags}}</div><br> {% endcomment %}
+
+      <div>{{profile.profile}}</div>
+      <div class="error">{{profile.profile.errors|striptags}}</div><br>
+
+
+      <div class="form-outline">
+        {{profile.email}}
+        <label class="form-label">{{profile.email.label_tag}}</label>
+      </div>
+      <div class="error">{{profile.email.errors|striptags}}</div><br>
+
+       <div class="form-outline">
+        {{profile.username}}
+        <label class="form-label">{{profile.username.label_tag}}</label>
+      </div>
+      <div class="error">{{profile.username.errors|striptags}}</div><br>
+
+      <div class="container-fluid"> 
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-outline">
+            <label class="form-label">{{profile.first_name.label_tag}}</label>
+            {{profile.first_name}}
+            </div>  
+          </div>
+          <div class="col-sm-6">
+            <div class="form-outline">
+            <label class="form-label">{{profile.last_name.label_tag}}</label>
+            {{profile.last_name}}
+            </div> <br> 
+          </div>  
+          <div class="col-sm-6">
+            <div class="form-outline">
+              {{profile.mobile}}
+              <label class="form-label">{{profile.mobile.label_tag}}</label>
+              </div> <br>
+              <div class="error">{{profile.mobile.errors|striptags}}</div><br>
+            </div>
+            <div class="col-sm-6">  
+              <div class="form-outline">
+                {{profile.dob}}
+                <label class="form-label">{{profile.dob.label_tag}}</label>
+              </div>
+              <div class="error">{{profile.dob.errors|striptags}}</div> 
+            </div>
+        </div>
+      </div>
+
+       <div class="form-outline">
+        {{profile.address}}
+        <label class="form-label">{{profile.address.label_tag}}</label>
+      </div>
+      <div class="error">{{profile.address.errors|striptags}}</div><br>
+      
+      
+      <button style="submit" value="submit" class="btn btn-primary">update profile</button>
+    </form>
+    <!--####################################-->
+    </div>
+    <div class="col-sm-5 mt-5">
+        <!-- First column -->
+          
+
+            <!-- Card -->
+            <div class="card card-cascade narrower">
+
+              <!-- Card image -->
+              <div class="view view-cascade gradient-card-header mdb-color lighten-3">
+                <h5 class="mb-0 font-weight-bold">Edit Photo</h5>
+              </div>
+              <!-- Card image -->
+
+              <!-- Card content -->
+              <div class="card-body card-body-cascade text-center">
+                {% if request.user.profile %}
+                   <img src="{{request.user.profile.url}}" style="height:390px;" alt="User Photo" class="img-fluid z-depth-1 mb-3 mx-auto" />
+                {% else %}
+                  <h5 class="text-center">No Profile</h5>
+                {% endif %}
+
+                <p class="text-muted"><small>Profile photo will be changed automatically</small></p>
+                <div class="row flex-center">
+                  <button class="btn btn-info btn-rounded btn-sm">Upload New Photo</button><br>
+                  <button class="btn btn-danger btn-rounded btn-sm">Delete</button>
+                </div>
+              </div>
+              <!-- Card content -->
+
+            </div>
+            <!-- Card -->
+
+ 
+          <!-- First column -->
+    </div>
+    
+ </div>
+</div>
+{% endblock alldata %}
+
+
+{% block js_link %}
+<script>
+   $( function() {
+    $( "#datepicker").datepicker();
+  } );
+</script>
+    <script src="{% static 'js/nav.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{% endblock js_link %}
+

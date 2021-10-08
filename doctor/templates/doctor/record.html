@@ -1,0 +1,38 @@
+{% extends "doctor/doc_master.html" %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+    <style>
+      body{
+        background-color:whitesmoke;
+      }
+    </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+
+{% endblock css_link %}
+
+
+{% block layout %}
+{% if data %}
+    {% for dt in data %}
+    <div class="container">
+        <div class="row">
+            <div class="h3">{{dt.pat}}  </div>
+            <div>{{dt.one}}</div>
+            <div>{{dt.two}}</div>
+            <div>{{dt.three}}</div>
+            <div>{{dt.four}}</div>
+        </div>
+    </div>
+    {% endfor %}
+{% else %}
+    <div class="alert alert-danger text-center mt-5 mb-5 h2">No Patient's record available..!</div>
+{% endif %}
+{% endblock layout %}
+
+
+
+{% block js_link %}
+
+{% endblock js_link %}

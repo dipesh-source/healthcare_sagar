@@ -1,0 +1,113 @@
+{% extends "doctor/doc_master.html" %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+    <style>
+      body{
+        background-color:whitesmoke;
+      }
+    </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+
+{% endblock css_link %}
+
+
+{% block layout %}
+<!--##################################################-->
+ <div class="">
+    <div class="text-center h2 text-primary mt-4">{{request.user.username}} have miss appoitment's</div>
+    <hr> 
+    <strong>Note: </strong>
+    <ul>
+        <li class="text-danger font-weight-bold">You can cancle appointment.</li>
+        <li class="text-danger font-weight-bold">You can update appointment date.</li>
+    </ul>
+ </div>
+<!--##################################################-->
+{% if data %}
+    <div class="container">
+        <di class="row">
+            {% for dt in data %}
+                                  
+                <!--Grid column-->
+                <div class="col-md-6 mb-4">
+
+                    <!-- Card -->
+                    <div class="card gradient-card">
+
+                        <div class="card-image" style="background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+
+                        <!-- Content -->
+                        <a href="#!">
+                            <div class="text-white d-flex h-100 mask blue-gradient-rgba">
+                            <div class="first-content align-self-center p-3">
+                                <h3 class="card-title"><strong class="">{{dt.patient}}</strong></h3>
+                                <p class="lead mb-0">Click on this card to see details</p>
+                            </div>
+                            <div class="second-content  align-self-center mx-auto text-center">
+                                <img src="{{dt.img.url}}" class="rounded-circle img-fluid" width="40%" alt="" srcset="">
+                            </div>
+                            </div>
+                        </a>
+
+                        </div>
+
+                        <!-- Data -->
+                        <div class="third-content  ml-auto mr-4 mb-2">
+                        <p class="font-weight-bold float-right">Missing Date: {{dt.when}}</p>
+                        <p class="text-uppercase text-danger h3"><strong>{{dt.patient}}</strong></p>
+                        </div>
+                        <!-- Content -->
+                        <div class="card-body white">
+                        {% comment %} <h4 class="text-uppercase font-weight-bold my-4">Details</h4> {% endcomment %}
+                            <div class="container">
+                                <di class="row">
+                                    <div class="col-sm-4">
+                                        <img src="{{dt.img.url}}" class="rounded-circle img-fluid" width="100%" alt="" srcset="">
+                                        <center><a href="{% url 'miss_cover' dt.id %}" class=""><i class="fas fa-calendar-week mt-4" style="font-size:30px;"></i></a></center>
+                                        
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="">Email: <strong>{{dt.gender}}</strong></div>
+                                        <div class="">Disease: <strong>{{dt.disease}}</strong> </div>
+                                        <div class="">Patient said: <strong>{{dt.write}}</strong> </div>
+                                        <div class="">Phone: <strong>{{dt.phone}}</strong> </div>
+                                        <div class="">Address: <strong>{{dt.address}}</strong> </div>
+                                        <div class="">publish: <strong>{{dt.fdate}}</strong> </div>
+                                        <div class="d-inline">
+                                            <form action="{% url 'miss_del' dt.id %}" method="POST">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-white btn-sm"><i class="far fa-window-close" style="color:red; font-size:30px;"></i></button>
+                                            </form>
+                                            <a href="{% url 'dochome' %}" classa="btn btn-outline-danger btn-sm">Back to home</a>
+                                        </div>
+                                        
+                                    </div>
+                                </di>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Card -->
+
+                </div>
+                <!--Grid column-->
+                
+            {% endfor %}
+        {% else %}
+            <center>
+                <div class="text-center mt-5 h3 alert alert-success">You did't miss appointment.</div>
+                <a href="{% url 'dochome' %}" class="btn btn-danger btn-lg btn-rounded mb-5">Back to home</a>
+            </center>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock layout %}
+
+
+
+{% block js_link %}
+
+{% endblock js_link %}

@@ -1,0 +1,57 @@
+{% extends 'secure/master2.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+    <link rel="stylesheet" href="{% static 'css/mdb.min.css' %}" />
+
+    <style>
+        .change{
+            color:red;
+        }
+        .ch{
+            background-color:whitesmoke;
+        }
+    </style>
+{% endblock css_link %}
+{% block layout %}
+    <div class="text-center alert alert-danger shadow h3 pb-1 pt-1">Announce to our patient</div>
+    <div class="container mb-5">
+        <div class="row">
+            <div class="col-sm-12">
+                <form action="" class="shadow p-5 ch" method="POST"  enctype="multipart/form-data" novalidate>
+    {% csrf_token %}
+        {% if form %}
+            {% for fm in form %}
+                {{fm.non_field_error}}
+            {% endfor %}
+        {% endif %}
+        {% if messages %}
+            {% for me in messages %}
+                <div class="alert alert-primary pb-1 pt-1 h4">{{me}}</div>
+            {% endfor %}
+        {% endif %}
+       
+        {% if form %} 
+            <div class="form-outline">
+                {{form.about}}
+                <label class="form-label" for="form1">{{form.about.label_tag}}</label>
+                </div>
+                <div class="change">{{form.about.errors|striptags}}</div>
+                <br>
+                {{form.media}}
+                {{form.data}}  
+                <div class="change">{{form.data.errors|striptags}} </div><br>
+        {% endif %}
+        <button type="submit" value="submit" class="btn btn-success">Upload Gallery</button>
+    </form>
+            </div>
+        </div>
+    </div>
+{% endblock layout %}
+
+
+{% block js_link %}
+    <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+
+{% endblock js_link %}

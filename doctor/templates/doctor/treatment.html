@@ -1,0 +1,192 @@
+{% extends "doctor/doc_master.html" %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+    <style>
+      body{
+        background-color:whitesmoke;
+      }
+    </style>
+{% endblock css_link %}
+
+
+{% block layout %}
+<!--##################################################-->
+{% if data %}
+    <div class="container">
+        <div class="row">
+            {% for dt in data %}
+            <!--####################-->
+                <section style="background-color: #eee; " class="shadow shadow-lg">
+                        
+                <!-- Card image -->
+                <div class="view view-cascade gradient-card-header peach-gradient shadow shadow-lg" style="border-radius:10px;">
+                    <h3 class="mb-0 text-center pt-4 font-weight-bolder pb-4">Give Propper Treatment</h3>
+                </div>
+                <!-- /Card image -->
+
+                <div class="container py-5">
+                    <div class="row">
+                    <div class="col">
+                                             </div>
+                    </div>
+
+                    <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card mb-4">
+                        <div class="card-body bg-dark text-center" style="border-radius:7px;">
+                            <img src="{{dt.img.url}}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                            <h5 class="my-3 text-white font-weight-bold">{{dt.patient}}</h5>
+                            <p class="text-muted mb-1 font-weight-bolder text-success">{{dt.gender}}</p>
+                            <p class="text-muted mb-4 text-info font-weight-bolder">{{dt.address}}</p>
+                            <div class="d-flex justify-content-center mb-2">
+                            <button type="button" class="btn btn-primary btn-rounded">Follow</button>
+                            <a href="{% url 'today' %}" class="btn btn-danger btn-rounded ms-1">Back page</a>
+                            {% comment %} <button type="button" >B</button> {% endcomment %}
+                            </div>
+                        </div>
+                        </div>
+                        <div class="card mb-4 mb-lg-0">
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush rounded-3">
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fas fa-globe fa-lg text-warning"></i>
+                                <p class="mb-0">https://mdbootstrap.com</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                                <p class="mb-0">mdbootstrap</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                                <p class="mb-0">@mdbootstrap</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                                <p class="mb-0">mdbootstrap</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+                                <p class="mb-0">mdbootstrap</p>
+                            </li>
+                            </ul>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Name</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{dt.patient}}</p>
+                            </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Email</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{dt.gender}}</p>
+                            </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Phone</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{dt.phone}}</p>
+                            </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Mobile</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted text-danger mb-0">Not Available</p>
+                            </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Address</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{dt.address}}</p>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-md-6">
+                                <p class="mb-4 bg-white border pb-1 pt-1 text-center font-weight-bolder" style="border-radius:5px;"><span class="text-dark font-italic font-weight-bolder me-1">Patient</span> Disease...!</p>
+                            <div class="card mb-4 mb-md-0">
+                            <div class="card-body">
+                                <p class="mb-1 text-danger font-weight-bold" style="font-size: 1rem;">{{dt.disease}}</p>
+                                <div class="progress rounded mb-2" style="height: 5px;">
+                                <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p><span class="text-secondary font-weight-bold  font-small">{{dt.patient}}</span> is saying.......</p>                
+                                {% if dt.write %}
+                                    <p>{{dt.write}} <br><br><br> <span class="font-small float-right text-danger">{{dt.fdate}}</span></p>
+                                {% else %}
+                                   <center><i class="fa fa-exclamation-circle mt-5" aria-hidden="true" style="font-size:50px;color:red;"></i></center> 
+                                    <p class="text-center text-danger mb-5">No Statment</p>
+                                {% endif %}
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-4 mb-md-0">
+                            <div class="card-body">
+                            {% if parms.doctor.add_treatment %}
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {% comment %} {% if form %}
+                                        {% for fm in form %}
+                                            {{fm.non_field_error}}
+                                        {% endfor %}
+                                    {% endif %} {% endcomment %}
+                                    {% if messages %}
+                                        {% for mes in messages %}
+                                            <div class="text-center black-text peach-gradient">{{mes}}</div>
+                                        {% endfor %}
+                                    {% endif %}
+                                    {{form.as_p}}
+                                    <button type="submit" class="btn btn-secondary btn-lg purple-gradient">Give Treatment</button>
+                                </form>
+                             {% else %}
+                                <h3>Sorry, you haven't rights !</h3>
+                            {% endif %}
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </section> 
+            <!--###################-->
+            {% endfor %}
+        </div>
+    </div>
+{% else %}
+    <div class="alert alert-danger text-center h3 mt-5">Data Not Available For This Patient..!</div>
+{% endif %} <br>
+    <center><a href="{% url 'dochome' %}"  class="btn btn-warning btn-rounded mb-5 mt-5">Back to home</a>
+    </center>
+<br>
+<!--##################################################-->
+{% endblock layout %}
+
+
+
+{% block js_link %}
+
+{% endblock js_link %}

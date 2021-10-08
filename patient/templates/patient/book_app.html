@@ -1,0 +1,102 @@
+{% extends 'patient/pat_master.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+  <link rel="stylesheet" href="{% static 'patient/css/doc_find.css' %}">
+    <style>
+    .error{
+        color:red;
+    } 
+      
+    </style>
+{% endblock css_link %}
+
+{% block header %}
+    {% include 'patient/success_nav.html' %}
+{% endblock header %}
+
+
+
+{% block alldata %}
+{% comment %} {% include 'patient/nav2.html' %} {% endcomment %}
+ 
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-sm-0"></div>
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-6">
+                    {% if data %}
+                        {% for dt in data %}
+                            <div class="mt-5">{{dt.first_name}}</div>
+                            <div>{{dt.last_name}}</div>
+                            <div>{{dt.username}}</div>
+                            <div>{{dt.email}}</div>
+                            <div>{{dt.phone}}</div>
+                            <div>{{dt.address}}</div>
+                            <div>{{dt.gender}}</div>
+                            {% if dt.profile %}
+                            <img src="{{dt.profile.url}}" alt="" srcset="" style="height:50px;">
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <div class="mt-5">Profile Disable</div>
+                    {% endif %}
+                </div>
+                <div class="col-sm-6">
+                {% if messages %}
+                    {% for mes in messages %}
+                        <div class="alert alert-info text-center h3 pb-2 pt-2">{{mes}} ,give <span><a href="{% url 'feed' %}">feedback</a></span> </div>
+                    {% endfor %}
+                {% endif %}
+                    <form action="" method="POST" class="mt-5 shadow shadow-lg p-3" novalidate>
+                        {% csrf_token %}
+                        {% if form %}
+                            {% for fm in form %}
+                                {{fm.non_field_error}}
+                            {% endfor %}
+                        {% endif %}
+                        {{form.when.label_tag}}{{form.when}}
+                        <div class="error"> {{form.when.errors|striptags}} </div>
+                     
+                        <div class="md-form">
+                            {{form.disease}}
+                            <label class="form-label" for="form1">{{form.disease.label_tag}}</label>
+                        </div>
+                        <div class="error">{{form.disease.errors|striptags}}</div>
+                        <br>
+                        <div class="form-outline">
+                            {{form.write}}
+                            <label class="form-label" for="form1">{{form.write.label_tag}}</label>
+                        </div>
+                        <div class="error">{{form.write.errors|striptags}}</div>
+                        <br>
+                        <button type="submit" class="btn btn-primary">Appointment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <h4 class="mt-5 text-center">Suggestion</h4>
+            {% for su in machine_data %}
+                {{su.email}} <br>
+                {{su.master}}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+   
+
+ 
+{% endblock alldata %}
+
+
+
+{% block js_link %}
+{% comment %}  
+    <script src="{% static 'js/nav.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> {% endcomment %}
+{% endblock js_link %}
+ 

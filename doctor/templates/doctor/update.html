@@ -1,0 +1,42 @@
+{% extends 'secure/master.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+ <link rel="stylesheet" href="{% static 'doctor/css/nav2.css' %}">
+    <link rel="stylesheet" href="{% static 'doctor/css/docnav.css' %}">
+{% endblock css_link %}
+
+{% block alldata %}
+{% comment %} {% include 'account/nav2.html' %} {% endcomment %}
+{% include 'doctor/nav2.html' %}
+
+{% include 'doctor/docnav.html' %}
+   
+<span onclick="openNav()" style="cursor: pointer;" class="btn btn-primary btn-lg mt-5">Check Summery</span>
+   
+     <form action="" method="POST" class="mt-5">
+     {% if messages %}
+              {% for me in messages %}
+                <div class="text-center alert alert-info h5 pb-1 pt-1 alert-dismissible fade show pb-1 pt-1 m-0 my-0 g-0" role="alert">
+                  {{me}}  
+                </div> <br>
+              {% endfor %}
+            {% endif %}
+    {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" value="submit" class="btn btn-danger">Click me</button>
+    </form>
+  
+   
+
+{% include 'account/footer.html' %}
+{% endblock alldata %}
+
+
+{% block js_link %}
+    <script src="{% static 'js/nav.js' %}"></script>
+    <script src="{% static 'doctor/js/docnav.js' %}"></script>
+
+
+{% endblock js_link %}

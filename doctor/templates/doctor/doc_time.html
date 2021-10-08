@@ -1,0 +1,161 @@
+{% extends 'secure/master.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/duotone.css" integrity="sha384-R3QzTxyukP03CMqKFe0ssp5wUvBPEyy9ZspCB+Y01fEjhMwcXixTyeot+S40+AjZ" crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/fontawesome.css" integrity="sha384-eHoocPgXsiuZh+Yy6+7DsKAerLXyJmu2Hadh4QYyt+8v86geixVYwFqUvMU8X90l" crossorigin="anonymous"/>
+<link rel="stylesheet" href="{% static 'doctor/css/nav2.css' %}">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+     <link rel="stylesheet" href="{% static 'doctor/css/docnav.css' %}">
+
+  <style>
+    body{
+      background-color:whitesmoke;
+    }
+    .pop{
+      color:red;
+    }
+  </style>
+{% endblock css_link %}
+
+{% block alldata %}
+{% include 'doctor/nav2.html' %}
+
+{% include 'doctor/docnav.html' %}
+
+<div class="container ">
+  <div class="row">
+      <div class="col-sm-5">
+       
+       <form action="" method="POST"  class="shadow shadow-lg p-5 mt-5 mb-2" style="background-color:white"  novalidate>
+        {% csrf_token %}
+        <div class="alert alert-primary h3 pb-1 pt-1 text-center">
+         <a onclick="openNav()" class=" "><i class="fas fa-tasks  " style="color:red; font-size:30px;"></i></a>
+          Set your availability
+        </div>
+        
+        {% if form %}
+          {% for fm in form %}
+            {{fm.non_field_error}}
+          {% endfor %}
+        {% endif %}
+
+        {% if form %}
+          
+          {{form.day.label_tag}}
+          {{form.day}}
+          <div class="pop">{{form.day.errors|striptags}}</div> <br>
+
+          {{form.date.label_tag}}
+          {{form.date}}
+          <div class="pop">{{form.date.errors|striptags}}</div> <br> 
+
+          {{form.start_time.label_tag}}
+          {{form.start_time}} <br>
+          <div class="pop">{{form.start_time.errors|striptags}}</div> <br> 
+
+          {{form.end_time.label_tag}}
+          {{form.end_time}} <br>
+          <div class="pop"> {{form.end_time.errors|striptags}}</div> <br> 
+        <button type="submit" value="submit" class="btn btn-danger">set time</button>
+
+           
+        {% endif %}
+
+        </form>
+
+    </div>
+    <div class="col-sm-7">
+      <div class="text-center h3 mt-5">Update Your Availability</div>
+      <hr>
+     <table class="table table-hover shadow shadow-lg" style="background-color:white">
+  <thead>
+    <tr>
+      <th scope="col">Day</th>
+      <th scope="col">Date</th>
+      <th scope="col">Start Time</th>
+      <th scope="col">End Time</th>
+      <th scope="col">Update</th>
+      <th scope="col">Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for dt in data %}
+      <tr>
+      <th scope="row">{{dt.day}}</th>
+      <td>{{dt.date}}</td>
+      <td>{{dt.start_time}}</td>
+      <td>{{dt.end_time}}</td>
+      <td>
+        <a href="{% url 'update' dt.id %}" role="button" data-bs-toggle="toggle" data-bs-target="#modal"><i class="fas fa-pencil-alt" style="font-size:30px; color:"></i></a> 
+        <!-- Button trigger modal -->
+{% comment %} <button class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-pencil-alt" style="font-size:25px; color:blue;"></i></button>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         
+         <form action="" method="POST" class="mt-5">
+     {% if messages %}
+              {% for me in messages %}
+                <div class="text-center alert alert-info h5 pb-1 pt-1 alert-dismissible fade show pb-1 pt-1 m-0 my-0 g-0" role="alert">
+                  {{me}}  
+                </div> <br>
+              {% endfor %}
+            {% endif %}
+    {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" value="submit" class="btn btn-danger">Click me</button>
+    </form>
+  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div> {% endcomment %}
+      </td>
+      <td>
+        <form action="{% url 'tdelete' dt.id %}" method="POST">
+        {% csrf_token %}
+           <button type="submit" class="btn btn-light btn-sm" >
+              <i class="fas fa-trash-alt" style="font-size:25px; color:red;"></i>
+           </button>
+                {% comment %} <span class="visuallyhidden">Search</span> {% endcomment %}
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+    </div>
+  </div>
+</div>  
+{% include 'account/footer.html' %}
+{% endblock alldata %}
+
+
+{% block js_link %}
+ <script src="{% static 'js/nav.js' %}"></script>
+    <script src="{% static 'doctor/js/docnav.js' %}"></script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
+
+  
+{% endblock js_link %}

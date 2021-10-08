@@ -1,0 +1,72 @@
+{% extends 'secure/master2.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+    <link rel="stylesheet" href="{% static 'css/mdb.min.css' %}" />
+
+    <style>
+        .change{
+            color:red;
+        }
+        .ch{
+            background-color:whitesmoke;
+        }
+    </style>
+{% endblock css_link %}
+{% block layout %}
+    <div class="text-center text-dark h2">Available Doctor's</div>
+    <hr>
+    <div class="row">
+        {% for dt in data %}
+            <div class="col-sm-3">
+                <div class="card">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                   {% if dt.profile %}
+                     <img
+                    src="{{dt.profile.url}}"
+                    class="img-fluid"
+                    />
+                    {% else %}
+                         <img
+                        src="{% static 'patient/img/default.png' %}"
+                        class="img-fluid"
+                        />
+                   {% endif %}
+                    <a href="">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                </div>
+                <div class="card-body bg-dark">
+                    <h5 class="card-title text-white text-center">Name: {{dt.username}}</h5>
+                        {% if dt.master %}  
+                            <div class="card-text text-center text-info h5">Phone:  <b>{{dt.mobile}}</b></div>
+                        {% else %}
+                            <div class="text-danger text-center">Phone: <b>Not updated</b></div>
+                        {% endif %}
+                         {% if dt.email %}  
+                            <div class="card-text text-center text-info h5">Email:  <b>{{dt.email}}</b></div>
+                        {% else %}
+                            <div class="text-danger text-center">Email: <b>Not updated</b></div>
+                        {% endif %}
+                    <div>
+                        <a href="" class="btn btn-success  ">View patient profile</a>
+                        <form action="{% url 'delete_pat' dt.id %}" method="POST" novalidate>
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Delete patient</button>
+                        </form>
+                    </div>
+                    
+                </div>
+                </div>
+            </div> 
+        {% endfor %} 
+    </div>
+    <hr>
+{% endblock layout %}
+
+
+{% block js_link %}
+    <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+
+{% endblock js_link %}

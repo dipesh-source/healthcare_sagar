@@ -1,0 +1,29 @@
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="{% url 'dochome' %}">Home</a>
+    <a href="{% url 'dash' %}">Dashboard</a>
+
+  <a href="{% url 'post_data' %}">Upload Post</a>
+  
+   <a href=" ">Info</a>
+
+  <a href="{% url 'time' %}">Manage Time</a>
+
+  <a href="{% url 'today' %}">Today Appointment</a>
+
+
+</div>
+
+<!-- Use any element to open the sidenav -->
+{% comment %} <span onclick="openNav()" style="cursor: pointer;" class="btn btn-primary mt-5">open</span> {% endcomment %}
+
+<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+<div id="main">
+ 
+<!--
+
+    write all data here 
+
+-->
+
+</div>

@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Material Design Bootstrap</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+ 
+    <!--######################################################-->
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'patient/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'patient/css/mdb.min.css' %}" rel="stylesheet">
+
+    {% comment %} <link href="{% static 'doctor/css/dark-mode.css' %}" rel="stylesheet"> {% endcomment %}
+
+ <style type="text/css">
+    html,
+    body,
+    header,
+    .view {
+      height: 100%;
+    }
+  </style>
+    {% block css_link %}
+    
+    {% endblock css_link %}
+  </head>
+    <body class="medical-lp">
+    <!--Navigation & Intro-->
+    {% block header %}
+      <header>
+        {% include 'patient/success_nav.html' %}
+        {% include 'patient/success_again.html' %}
+      </header>
+    {% endblock header %}
+    <!--/Navigation & Intro-->
+   
+    <!--Double navigation-->
+    {% comment %} <header>
+       {% include 'patient/pat_nav.html' %}
+    </header> <br><br><br><br> {% endcomment %}
+    <!--/Navigation & Intro-->
+
+    <!--Main content-->
+    <main>
+        {% block alldata %}
+            
+        {% endblock alldata %}
+
+        {% block finaldata %}
+          
+        {% endblock finaldata %}
+
+    </main>
+    <!--/Main content-->
+
+
+    <!--footer-->
+        {% include 'patient/pat_footer.html' %}
+    <!--/footer-->
+
+      <!-- SCRIPTS -->
+      <!-- JQuery -->
+      <script type="text/javascript" src="{% static 'patient/js/jquery-3.4.1.min.js' %}"></script>
+      <!-- Tooltips -->
+      <script type="text/javascript" src="{% static 'patient/js/popper.min.js' %}"></script>
+      <!-- Bootstrap core JavaScript -->
+      <script type="text/javascript" src="{% static 'patient/js/bootstrap.min.js' %}"></script>
+      <!-- MDB core JavaScript -->
+      <script type="text/javascript" src="{% static 'patient/js/mdb.min.js' %}"></script>
+      
+      
+      {% block js_link %}
+
+      {% endblock js_link %}
+    <!-- Custom scripts -->
+    <script>
+
+        // Animation init
+        new WOW().init();
+
+    </script>
+  </body>
+</html>

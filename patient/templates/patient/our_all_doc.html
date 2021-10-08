@@ -1,0 +1,336 @@
+{% extends 'patient/pat_master.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+     
+    {% comment %} <link rel="stylesheet" href="{% static 'patient/css/nav_extra.css' %}"> {% endcomment %}
+    {% comment "" %}
+        delete this css file from w3 schools
+    {% endcomment %}
+    {% comment %} <link rel="stylesheet" href="{% static 'patient/css/all_doctor.css' %}"> {% endcomment %}
+    {% comment %} <link rel="stylesheet" href="{% static 'patient/css/show_doctor_nav.css' %}"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'patient/css/display_doctor.css' %}">
+    <style>
+    body{
+      background-color:whitesmoke;
+    }
+     .error{
+       color:red;
+     } 
+       #id_gender{
+            list-style-type: None;
+            display: inline-flex;
+            padding-left:0px;
+        }
+        #id_gender_1{
+            margin-left: 30px;
+        }
+        #set{
+          margin-top:0px;
+        }
+    </style>
+{% endblock css_link %}
+
+{% block header %}
+    {% include 'patient/success_nav.html' %}
+{% endblock header %} 
+
+{% block alldata %}
+{% comment %} {% include 'patient/nav2.html' %} {% endcomment %}
+
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-sm-6 mt-4">
+            <div class="mt-5 text-center">Instant Consultation
+With Trusted Doctors</div>
+        </div>
+        <div class="col-sm-6 mt-4">
+            <img src="{% static 'patient/img/banner-doctors.png' %}" alt="" srcset="" style="width:100%">
+        </div>
+    </div>
+</div>
+<div class="container mb-7">
+    <div class="row">
+        <a href="" class="text-center h3 mt-5">#SochMatPoochLe</a>
+        <small class="text-center text-black">Select Your Specialty</small>
+        <hr>
+        <div class="col-sm-3 mt-5">
+        <!--###############################-->
+        <div class="card">
+        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            <img
+            src="{% static 'patient/img/neurology.jpg' %}"
+            class="img-fluid" style="height:163px;"
+            />
+            <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a>
+        </div>
+        <div class="card-body  bg-dark">
+            <h5 class="card-title text-center text-white">Neurology</h5>
+            <p class="card-text">
+            
+            </p>
+            <a href="{% url 'Neurology' %}" class="btn btn-primary" style="width:100%;">Consult Now</a>
+        </div>
+        </div>
+        <!--###############################-->
+        </div>
+        <div class="col-sm-3 mt-5">
+               <!--###############################-->
+        <div class="card">
+        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            <img
+            src="{% static 'patient/img/Ophthalmology.jpg' %}"
+            class="img-fluid"
+            />
+            <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a>
+        </div>
+        <div class="card-body  bg-dark">
+            <h5 class="card-title text-white text-center">Ophthalmology</h5>
+            <p class="card-text">
+            
+            </p>
+            <a href="#!" class="btn btn-primary" style="width:100%;">Consult Now</a>
+        </div>
+        </div>
+        <!--###############################-->
+        </div>
+        <div class="col-sm-3 mt-5">
+        <!--###############################-->
+        <div class="card">
+        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            <img
+            src="{% static 'patient/img/Dermatologynew.png' %}"
+            class="img-fluid" style="height:163px;"
+            />
+            <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a>
+        </div>
+        <div class="card-body bg-dark">
+            <h5 class="card-title text-white text-center">Dermatology</h5>
+            <p class="card-text">
+            
+            </p>
+            <a href="#!" class="btn btn-primary" style="width:100%;">Consult Now</a>
+        </div>
+        </div>
+        <!--###############################-->
+        </div>
+        <div class="col-sm-3 mt-5">
+        <!--###############################-->
+        <div class="card">
+        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            <img
+            src="{% static 'patient/img/surgicalservices_feat.jpg' %}"
+            class="img-fluid" style="height:163px;"
+            />
+            <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a>
+        </div>
+        <div class="card-body bg-dark">
+            <h5 class="card-title text-white text-center">Surgical</h5>
+            <p class="card-text text-white">
+             
+            </p>
+            <a href="#!" class="btn btn-primary" style="width:100%;">Consult Now</a>
+        </div>
+        </div>
+        <!--###############################-->
+        </div>
+         <div class="col-sm-3 mt-5">
+               <!--###############################-->
+        <div class="card">
+        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            <img
+            src="{% static 'patient/img/cardiology.jpg' %}"
+            class="img-fluid" style="height:163px;"
+            />
+            <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a>
+        </div>
+        <div class="card-body bg-dark">
+            <h5 class="card-title text-white text-center">Cardiology</h5>
+            <p class="card-text">
+            
+            </p>
+            <a href="#!" class="btn btn-primary" style="width:100%;">Consult Now</a>
+        </div>
+        </div>
+        <!--###############################-->
+        </div>
+         <div class="col-sm-3 mt-5">
+               <!--###############################-->
+        <div class="card">
+        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            <img
+            src="{% static 'patient/img/istockphoto-1222228594-170667a.jpg' %}"
+            class="img-fluid" style="height:163px; width:100%;"
+            />
+            <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a>
+        </div>
+        <div class="card-body bg-dark">
+            <h5 class="card-title text-center text-white">Dental</h5>
+            <p class="card-text">
+            
+            </p>
+            <a href="#!" class="btn btn-primary" style="width:100%;">Consult Now</a>
+        </div>
+        </div>
+        <!--###############################-->
+        </div>
+         <div class="col-sm-3 mt-5">
+               <!--###############################-->
+        <div class="card">
+        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            <img
+            src="{% static 'patient/img/Claudine_Image_2.png' %}"
+            class="img-fluid" style="height:163px;"
+            />
+            <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a>
+        </div>
+        <div class="card-body bg-dark">
+            <h5 class="card-title text-white text-center">Traumatology</h5>
+            <p class="card-text">
+            
+            </p>
+            <a href="#!" class="btn btn-primary" style="width:100%;">Consult Now</a>
+        </div>
+        </div>
+        <!--###############################-->
+        </div>
+         <div class="col-sm-3 mt-5">
+               <!--###############################-->
+        <div class="card">
+        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            <img
+            src= "{% static 'patient/img/main-qimg.webp' %}"
+            class="img-fluid" style="height: 163px; width:100%;"
+            />
+            <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a>
+        </div>
+        <div class="card-body bg-dark">
+            <h5 class="card-title text-white text-center">General Surgeon</h5>
+            <p class="card-text">
+            
+            </p>
+            <a href="#!" class="btn btn-primary" style="width:100%;">Consult Now</a>
+        </div>
+        </div>
+        <!--###############################-->
+        </div>
+         <div class="col-sm-3 mt-5">
+               <!--###############################-->
+        <div class="card">
+        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            <img
+            src="{% static 'patient/img/High_resolution.jpg' %}"
+            class="img-fluid" style="height:163px;"
+            />
+            <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a>
+        </div>
+        <div class="card-body bg-dark">
+            <h5 class="card-title text-white text-center">Medicine Specialists</h5>
+            <p class="card-text">
+            
+            </p>
+            <a href="#!" class="btn btn-primary" style="width:100%;">Consult Now</a>
+        </div>
+        </div>
+        <!--###############################-->
+        </div>
+         <div class="col-sm-3 mt-5">
+               <!--###############################-->
+        <div class="card">
+        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            <img
+            src="{% static 'patient/img/sports-medicine-img.jpg' %}"
+            class="img-fluid" style="height:163px; width:100%;"
+            />
+            <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a>
+        </div>
+        <div class="card-body bg-dark">
+            <h5 class="card-title text-white text-center"><small>Sports Medicine Specia*</small></h5>
+            <p class="card-text">
+            
+            </p>
+            <a href="#!" class="btn btn-primary" style="width:100%;">Consult Now</a>
+        </div>
+        </div>
+        <!--###############################-->
+        </div>
+         <div class="col-sm-3 mt-5">
+               <!--###############################-->
+        <div class="card">
+        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            <img
+            src="{% static 'patient/img/pediatrician-baby-istock.jpg' %}"
+            class="img-fluid" style="height:163px;"
+            />
+            <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a>
+        </div>
+        <div class="card-body bg-dark">
+            <h5 class="card-title text-white text-center">Pediatrics</h5>
+            <p class="card-text">
+            
+            </p>
+            <a href="#!" class="btn btn-primary" style="width:100%;">Consult Now</a>
+        </div>
+        </div>
+        <!--###############################-->
+        </div>
+         <div class="col-sm-3 mt-5">
+               <!--###############################-->
+        <div class="card">
+        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            <img
+            src="{% static 'patient/img/nutrition_counselling_v2.jpg' %}"
+            class="img-fluid" style="height:163px;"
+            />
+            <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a>
+        </div>
+        <div class="card-body bg-dark">
+            <h5 class="card-title text-white text-center">Nutrition Counselling</h5>
+            <p class="card-text">
+            
+            </p>
+            <a href="#!" class="btn btn-primary" style="width:100%;">Consult Now</a>
+        </div>
+        </div>
+        <!--###############################-->
+        </div>
+        
+    </div>
+</div>
+ 
+
+{% endblock alldata %}
+
+
+
+{% block js_link %}
+    <script src="{% static 'patient/js/all_doctor.js' %}"></script>
+    <script src="{% static 'js/nav.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{% endblock js_link %}

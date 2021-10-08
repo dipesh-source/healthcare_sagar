@@ -1,0 +1,53 @@
+{% extends 'secure/master.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+ <style>
+     .error{
+       color:red;
+     } 
+  </style>
+{% endblock css_link %}
+
+{% block alldata %}
+<form action="" method="POST" class="mt-5 pt-2 p-3" novalidate>
+{% csrf_token %}
+{% if form %}
+  {% for fm in form %}
+    {{fm.non_field_error}}
+  {% endfor %}
+  {% if messages %}
+    {% for mes in messages %}
+      <div>{{mes}}</div>
+    {% endfor %}
+  {% endif %}
+{% endif %}
+
+{% if form %}
+  <div class="form-outline">
+    {{form.old_password}}
+    <label class="form-label" for="form2">{{form.old_password.label_tag}}</label>
+  </div>
+  <div class="error">{{form.old_password.errors|striptags}}</div><br>
+
+  <div class="form-outline">
+    {{form.new_password1}}
+    <label class="form-label" for="form2">{{form.new_password1.label_tag}}</label>
+  </div>
+  <div class="error">{{form.new_password1.errors|striptags}}</div><br>
+  
+  <div class="form-outline">
+    {{form.new_password2}}
+    <label class="form-label" for="form2">{{form.new_password2.label_tag}}</label>
+  </div>
+  <div class="error">{{form.new_password2.errors|striptags}}</div><br>
+{% endif %}
+  <button type="submit" value="submit" class="btn btn-danger" style="width:100%;">Update password</button>
+</form>  
+{% endblock alldata %}
+
+
+{% block js_link %}
+
+{% endblock js_link %}

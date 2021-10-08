@@ -1,0 +1,366 @@
+{% extends 'patient/pat_master.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <link rel="stylesheet" href="{% static 'patient/css/doc_find.css' %}">
+      <link href="{% static 'adminapp/css1/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'adminapp/css1/mdb.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'doctor/css/dark-mode.css' %}" rel="stylesheet">
+
+        {% comment %} <link rel="stylesheet" href="{% static 'patient/css/nav_extra.css' %}"> {% endcomment %}
+
+    <style>
+     .error{
+       color:red;
+     }   
+      /* width */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1; 
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888; 
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555; 
+    }
+    		h1 {
+				color:Green;
+			}
+			div.gfg {
+				margin:5px;
+				padding:5px;
+				background-color: whitesmoke;
+				width: 500px;
+				height: 600px;
+				overflow: auto;
+				text-align:justify;
+			}
+       
+    </style>
+{% endblock css_link %}
+
+{% block header %}
+  <div>{% include 'patient/success_nav.html' %}</div> 
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="text-center" style="margin-top:40%;">Data remaining</h3>
+        <center> <li class="list-group-item justify-content-between">
+                    Cras justo odio
+            <button type="button" class="btn btn-danger btn-floating" data-toggle="modal" data-target="#fluidModalLeftInfoDemo">Left</button>
+
+                    <span class="badge badge-primary badge-pill">14</span>
+                  </li></center>
+      </div>
+      <div class="col-sm-6  ">
+        <img src="{% static 'patient/img/osc-banner-new.png' %}" class="img-fluid" alt="" srcset="">
+      </div>
+      </div>
+  </div>
+  <hr>
+  {% comment %} <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> {% endcomment %}
+{% endblock header %}
+
+{% block alldata %}
+{% comment %} {% include 'patient/nav2.html' %} {% endcomment %}
+
+<div class="text-center">
+  {% if data %}
+      <div class="container-fluid mb-5">
+        <div class="row">
+          <div class="col-sm-4 bg-black">
+  {% if datax %}
+      <h4 class="text-center peach-gradient pb-2 pt-2" style="border-radius:10px;">
+      <marquee behavior="scroll" class="text-center black-text" direction="left" scrollamount="10">
+      prescription details 
+      </marquee>
+      </h4>          
+      <div class="gfg p-3 shadow shadow-lg"> 
+        {% for dx in datax %}
+<!--####################################################################################-->
+              
+<!-- Full Height Modal Left Info Demo -->
+            {% comment %} <button type="button" class="btn btn-danger btn-floating" data-toggle="modal" data-target="#fluidModalLeftInfoDemo">Left</button> {% endcomment %}
+        <div class="modal fade left" id="fluidModalLeftInfoDemo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+          aria-hidden="true" data-backdrop="false">
+          <div class="modal-dialog modal-full-height modal-left modal-notify modal-danger" role="document">
+            <!-- Content -->
+            <div class="modal-content">
+              <!-- Header -->
+              <div class="modal-header">
+                <p class="heading lead">Modal Succes</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+              </div>
+
+              <!-- Body -->
+              <div class="modal-body">
+                <div class="text-center">
+                  <i class="fas fa-check fa-4x mb-3 animated rotateIn"></i>
+                </div>
+                <a href="{{dx.link}}">{{dx.link}}</a> <br>
+          {{dx.one}} <br>
+          {{dx.two}} <br>
+          {{dx.three}} <br>
+          {{dx.four}} <br>
+          <form action="{% url 'tre' dx.id %}" method="POST" novalidate>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-floating"><i class="far fa-trash-alt"></i></button>
+          </form>
+              </div>
+
+              <!-- Footer -->
+              <div class="modal-footer justify-content-center">
+                <a type="button" class="btn btn-info">Get it now <i class="far fa-gem ml-1"></i></a>
+                <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">No, thanks</a>
+              </div>
+            </div>
+            <!-- Content -->
+          </div>
+        </div>
+        <!-- Full Height Modal Right Info Demo -->
+
+<!--####################################################################################-->
+          <div class="blue-gradient pt-0 pb-0 shadow shadow-lgc">
+          
+          <div class="ml-3 text-white fa-2x">{{dx.doc_name}} <span class="" style="font-size:18px; color:yellow;">({{dx.master}})</span> </div>
+          <div class="text-white ml-3">Appointment at: <strong>{{dx.when}}</strong></div>
+            {% comment %} <a href="{{dx.link}}">{{dx.link}}</a>  {% endcomment %}
+            <form action="{% url 'tre' dx.id %}" class="" method="POST" novalidate>
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger btn-floating"><i class="far fa-trash-alt" style="font-size:22px;"></i></button>
+              <a href="" class="btn btn-pink btn-floating"><i class="far fa-arrow-alt-circle-right"   style="font-size:30px;"></i></a>
+              <span class="float-right mt-5 text-white">{{dx.fdate}}</sapn>
+            </form>
+          </div>
+        {% endfor %}
+		  </div>
+      {% else %}
+        <div class="mt-5">
+          <i class="fas fa-syringe" style="font-size:70px;"></i>
+        </div>
+        <h2 class="alert alert-danger mt-1 mb-1">Wait for doctor response..!</h2>
+  {% endif %}
+   
+          </div>
+          <div class="col-sm-8  ">
+            <h2 class="text-center pb-2 pt-2 aqua-gradient" style="border-radius:10px;">All <span class="text-white font-italic">{{request.user.username}}</span>, appointment's..!</h2>
+            <div class="container">
+              <div class="row">
+            {% for dt in data %}
+                            
+          <!--Grid column-->
+            <div class="col-md-4 mb-4">
+
+              <!-- Card -->
+              <div class="card gradient-card">
+
+                  <div class="card-image" style="background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg)">
+
+                    <!-- Content -->
+                    <a href="#!">
+                      <div class="text-white d-flex h-100 mask purple-gradient-rgba">
+                        <div class="first-content align-self-center p-3">
+                          <h4 class="card-title">{{dt.doc_name}} </h4>
+                          {% comment %} <p class="lead mb-0">Click on this card to see details</p> {% endcomment %}
+                        </div>
+                        <div class="second-content align-self-center mx-auto text-center">
+                          {% if dt.pro %}
+                            <img src="{{dt.pro.url}}" alt="" srcset="" style="border-radius:10%;" width="100%" class="img-fluid">
+                          {% else %}
+                            <img src="{% static 'patient/img/default.png' %}" alt="" srcset="">
+                          {% endif %}
+                        </div>
+                      </div>
+                    </a>
+
+                  </div>
+
+                  <!-- Data -->
+                  <div class="third-content ml-auto mr-4 mb-2">
+                    <p class="text-uppercase text-muted">Today's sale</p>
+                    <h4 class="font-weight-bold float-right">2000$</h4>
+                  </div>
+
+                  <!-- Content -->
+                  <div class="card-body white">
+                    <div class="progress md-progress">
+                      <div class="progress-bar bg-primary" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <p class="text-muted"> </p>
+                    <h4 class="text-uppercase font-weight-bold my-4">Details</h4>
+                     
+                      <!-- Name -->
+                              <div class="">Appointment: {{dt.when}}</div>
+                              <div class="">Name: {{dt.doc_name}}</div>
+                              <div class="">Specialist: {{dt.mast}}</div>
+                              <div class="">Email: {{dt.doctor}}</div>
+                              <div class="">Contact number: {{dt.ph}}</div>
+                              <div class="">From: {{dt.add}}</div>
+                            
+                           
+                            <form action="{% url 'dele_app' dt.id %}" method="POST" novalidate>
+                              {% csrf_token %}
+                              <button type="submit" class="btn btn-danger btn-floating"><i class="far fa-trash-alt"></i></button>
+                          </form>
+                  </div>
+
+              </div>
+              <!-- Card -->
+
+            </div>
+            <!--Grid column-->
+ 
+            {% endfor %}
+             
+             </div>
+            </div>
+           </div>
+        </div>
+      </div>  
+  {% else %}
+    <div>Till now, you did'n make appointment</div>
+  {% endif %}
+</div>
+ 
+  
+	 
+		 
+		
+
+{% endblock alldata %}
+
+{% block js_link %}
+    <script src="{% static 'js/nav.js' %}"></script>
+      
+{% endblock js_link %}
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+<div>
+        {% if dt.pro %}
+          <img src="{{dt.pro.url}}" alt="" srcset="" width="20%">
+        {% else %}
+          <img src="{% static 'patient/img/default.png' %}" alt="" srcset="">
+        {% endif %}
+      </div>
+      
+      <div class="">Your Appointment Date: {{dt.when}}</div>
+      <div class="">Doctor name: {{dt.doc_name}}</div>
+      <div class="">Specialist: {{dt.mast}}</div>
+      <div class="">Doctor Email: {{dt.doctor}}</div>
+      <div class="">Contact number: {{dt.ph}}</div>
+      <div class="">From: {{dt.add}}</div>
+      <form action="{% url 'dele_app' dt.id %}" method="POST" novalidate>
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">cancle</button>
+      </form>
+
+
+
+
+<!-- Rotating card -->  
+
+
+  <div class="card-wrapper card-action">
+    <div id="card-1" class="card card-rotating text-center">
+
+      <!-- Front Side -->
+      <div class="face front">
+
+        <!-- Image-->
+        <div class="card-up">
+          <img  class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/18.jpg" alt="Image with a photo of clouds.">
+        </div>
+
+        <!-- Avatar -->
+        <div class="avatar mx-auto white"><img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(21).jpg" class="rounded-circle" alt="Sample avatar image.">
+        </div>
+
+        <!-- Content -->
+        <div class="card-body">
+          <p class="font-weight-bold text-uppercase pink-text mb-3">Photography</p>
+          <h3 class="font-weight-bold mb-3 pb-1">Hello World!</h3>
+          <!-- Triggering button -->
+          <a class="rotate-btn btn-floating btn-pink" data-card="card-1"><i class="fas fa-redo-alt"></i> Click here to rotate</a>
+        </div>
+      </div>
+      <!-- Front Side -->
+
+      <!-- Back Side -->
+      <div class="face back">
+        <div class="card-body">
+
+          <!-- Content -->
+          <h4 class="font-weight-bold">About me</h4>
+          <hr>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime quae, dolores dicta. Blanditiis rem amet repellat, dolores nihil quae in mollitia asperiores ut rerum repellendus, voluptatum eum, officia laudantium quaerat?
+          </p>
+          <hr>
+          <!-- Social Icons -->
+          <ul class="list-inline py-2">
+            <li class="list-inline-item"><a class="mx-1 btn-floating btn-pink"><i class="fab fa-facebook-f"></i></a></li>
+            <li class="list-inline-item"><a class="mx-1 btn-floating btn-pink"><i class="fab fa-twitter"></i></a></li>
+            <li class="list-inline-item"><a class="mx-1 btn-floating btn-pink"><i class="fab fa-google-plus-g"></i></a></li>
+            <li class="list-inline-item"><a class="mx-1 btn-floating btn-pink"><i class="fab fa-linkedin-in"></i></a></li>
+          </ul>
+          <!-- Triggering button -->
+          <a class="rotate-btn" data-card="card-1"><i class="fas fa-undo"></i> Click here to rotate back</a>
+
+        </div>
+      </div>
+      <!-- Back Side -->
+
+    </div>
+  </div>
+  <!-- Rotating card -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

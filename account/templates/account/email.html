@@ -1,0 +1,62 @@
+{% extends 'secure/master.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+    <style>
+     .error{
+       color:red;
+     } 
+    </style>
+{% endblock css_link %}
+
+
+{% block alldata %}
+{% comment %} <div class="container">
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8 mb-0">
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+</div> {% endcomment %}
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-sm-4">
+<form action="" method="POST" class="border border-top p-3 mt-5 shadow shadow-lg" style="border-radius:6px;" novalidate>
+  {% csrf_token %}
+    {% if messages %}
+      {% for mes in messages %}
+        <div>{{mes}}</div>
+      {% endfor %}
+    {% endif %}
+    {% if form %}
+      {% for fm in form %}
+        {{fm.non_field_error}}
+      {% endfor %}
+    {% endif %}
+    <div class="alert alert-primary text-center h3  text-danger pb-2 shadow pt-2">Reset Account Password</div>
+    <img src="{% static 'img/password.png' %}" style="width: 100%;" class="pb-0 mb-0" alt="" srcset="">
+    {% if form %}
+      <div class="form-outline">
+        {{form.email}}
+        <label class="form-label" for="form1">{{form.email.label_tag}}</label>
+        {% comment %} {{form.email.errors|striptags}} {% endcomment %}
+      </div>
+      <div class="error">{{form.email.errors|striptags}}</div> <br>
+    {% endif %}
+    <button type="submit" value="submit" class="btn btn-primary" style="width:100%;">Reset password</button>
+  </form>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+  
+{% endblock alldata %}
+
+
+{% block js_link %}
+
+{% endblock js_link %}
+

@@ -1,0 +1,216 @@
+{% extends 'secure/master.html' %}
+
+{% comment %} {% extends "doctor/doc_master.html" %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+    <style>
+      body{
+        background-color:whitesmoke;
+      }
+    </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+    <link rel="stylesheet" href="{% static 'doctor/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'doctor/css/mdb.min.css' %}">
+
+{% endblock css_link %}
+
+
+{% block layout %}
+ 
+{% endblock layout %}
+
+
+
+{% block js_link %}
+  <script src=" {% static 'doctor/js/jquery-3.4.1.min.js' %} "></script>
+  <script src=" {% static 'doctor/js/popper.min.js' %} "></script>
+  <script src=" {% static 'doctor/js/bootstrap.js' %} "></script>
+  <script src=" {% static 'doctor/js/mdb.min.js' %} "></script>
+  
+{% endblock js_link %} {% endcomment %}
+<!--###################################################-->
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  
+
+   <link rel="stylesheet" href="{% static 'doctor/css/nav2.css' %}">
+    <style>
+    body{
+      background-color:whitesmoke;
+    }
+     .error{
+       color:red;
+     } 
+       #id_gender{
+            list-style-type: None;
+            display: inline-flex;
+            padding-left:0px;
+        }
+        #id_gender_1{
+            margin-left: 30px;
+        }
+        #set{
+          margin-top:0px;
+        }
+    </style>
+{% endblock css_link %}
+
+<div class="form-outline">
+{{form.username}}
+<label class="form-label" for="form1">{{form.username.label_tag}}</label>
+</div>
+
+{% block alldata %}
+{% include 'doctor/nav2.html' %}
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class="col-sm-3 mt-1 bg-dark">
+      <div class="mt-5">{% include 'doctor/doc_card.html' %}</div>
+    </div>
+
+    <div class="col-sm-6 p-5">
+     <form action="" method="POST" style="background-color:white;" class="p-3" enctype="multipart/form-data" novalidate>
+    {% if profile %}
+      {% for pf in profile %}
+        {{pf.non_field_error}}
+      {% endfor %}
+    {% endif %}
+    
+    {% if messages %}
+      {% for mes in messages %}
+        <div class="alert alert-success">{{mes}}</div>
+      {% endfor %}
+    {% endif %}
+        {% csrf_token %}
+        <div class="text-center h3">Update Profile</div>
+        <hr>
+        <div class="">Welcome {{request.user.username}}</div>
+      <img src="{{request.user.profile.ur}}" alt="" srcset="">
+      <div class="form-check">
+        {{profile.gender}}
+      </div>  
+       <div class="error">{{profile.gender.errors|striptags}}</div><br>  
+
+
+      {{profile.profile}} <br>
+      <div class="error">{{profile.profile.errors|striptags}}</div><br>
+        <label class="form-label" style="color:black;">{{profile.master.label_tag}}</label>
+        {{profile.master}}
+       
+      <div class="error">{{profile.master.errors|striptags}}</div><br>
+
+
+      <div class="row">
+        <div class="col-sm-6">
+           {{profile.start_time.label_tag}}
+          {{profile.start_time}} <br>
+          <div class="pop">{{profile.start_time.errors|striptags}}</div> <br> 
+
+        </div>
+        <div class="col-sm-6">
+
+          {{profile.end_time.label_tag}}
+          {{profile.end_time}} <br>
+          <div class="pop"> {{profile.end_time.errors|striptags}}</div> <br> 
+        </div>
+      </div>
+
+        
+      <div class="row">
+        <div class="col-sm-6">
+          <label class="form-label" style="color:black;">{{profile.in_day.label_tag}}</label>
+          {{profile.in_day}}
+          <div class="error">{{profile.in_day.errors|striptags}}</div><br>
+        </div>
+        <div class="col-sm-6">
+          <label class="form-label" style="color:black;">{{profile.out_day.label_tag}}</label>
+          {{profile.out_day}}
+          <div class="error">{{profile.out_day.errors|striptags}}</div><br>
+        </div>
+      </div>
+
+
+        <div class="form-outline">
+        {{profile.clinic}}
+        <label class="form-label">{{profile.clinic.label_tag}}</label>
+      </div>
+      <div class="error">{{profile.clinic.errors|striptags}}</div><br>
+
+        <div class="form-outline">
+        {{profile.some}}
+        <label class="form-label">{{profile.some.label_tag}}</label>
+      </div>
+      <div class="error">{{profile.some.errors|striptags}}</div><br>
+
+       <div class="form-outline">
+        {{profile.username}}
+        <label class="form-label">{{profile.username.label_tag}}</label>
+      </div>
+      <div class="error">{{profile.username.errors|striptags}}</div><br>
+
+       <div class="form-outline">
+        {{profile.first_name}}
+        <label class="form-label">{{profile.first_name.label_tag}}</label>
+      </div><br>
+
+       <div class="form-outline">
+        {{profile.last_name}}
+        <label class="form-label">{{profile.last_name.label_tag}}</label>
+      </div><br>
+
+       <div class="form-outline">
+        {{profile.mobile}}
+        <label class="form-label">{{profile.mobile.label_tag}}</label>
+      </div>
+      <div class="error">{{profile.mobile.errors|striptags}}</div><br>
+
+
+    
+      
+      <div class="form-outline">
+        {{profile.dob}}
+        <label class="form-label">{{profile.dob.label_tag}}</label>
+      </div>
+      <div class="error">{{profile.dob.errors|striptags}}</div><br>
+
+      
+       <div class="form-outline">
+        {{profile.address}}
+        <label class="form-label">{{profile.address.label_tag}}</label>
+      </div><br>
+      
+      <button style="submit" value="submit" class="btn btn-primary">update profile</button>
+    </form>
+    </div>
+    <div class="col-sm-3 mt-1 bg-dark">
+      <div>
+        <div><center><i class="fas fa-user-md mt-5" style="font-size:80px; color:cyan;"></i></center></div>
+        <hr>
+        <h4 class="card-title text-center text-white mt-1">My Availability</h4>
+        <div class="text-center mt-1 text-white h5">Day's : {{request.user.in_day}} <span class="text-info text-danger">to</span> {{request.user.out_day}}</div>
+        <div class="text-center mt-1 h5 text-white">Time : {{request.user.start_time}} <span class="text-info text-danger">to</span> {{request.user.end_time}}</div>
+      </div>
+    </div>
+ </div>
+</div>
+{% include 'account/footer.html' %}
+{% endblock alldata %}
+
+
+{% block js_link %}
+<script>
+   $( function() {
+    $( "#datepicker").datepicker();
+  } );
+</script>
+    <script src="{% static 'js/nav.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{% endblock js_link %}
+ 

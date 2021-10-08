@@ -1,0 +1,97 @@
+{% extends 'secure/master.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+        
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'adminapp/css1/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'adminapp/css1/mdb.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+  
+
+    <link rel="stylesheet" href="{% static 'patient/css/nav_extra.css' %}">
+    <style>
+    body{
+      background-color:whitesmoke;
+    }
+     .error{
+       color:red;
+     } 
+       #id_gender{
+            list-style-type: None;
+            display: inline-flex;
+            padding-left:0px;
+        }
+        #id_gender_1{
+            margin-left: 30px;
+        }
+        #set{
+          margin-top:0px;
+        }
+    </style>
+{% endblock css_link %}
+
+<div class="form-outline">
+{{form.username}}
+<label class="form-label" for="form1">{{form.username.label_tag}}</label>
+</div>
+
+{% block alldata %}
+{% include 'patient/nav2.html' %}
+    {% comment "check" %}
+        doc2
+        Traumatology
+        Day's : Sunday To Saturday
+        Time: 1:59 p.m.To 1:59 p.m.
+        doc2@gmail.com
+        Doctor
+        dipesh
+    {% endcomment %}
+{% if data %}
+    {% for dt in data %}
+        {{dt}}
+    {% endfor %}
+{% else %}
+{% endif %}
+    
+{% include 'account/footer.html' %}
+{% endblock alldata %}
+
+
+{% block js_link %}
+<script>
+   $( function() {
+    $( "#datepicker").datepicker();
+  } );
+</script>
+    <script src="{% static 'js/nav.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="{% static 'adminapp/js1/jquery-3.3.1.min.js' %}"></script>
+    <!-- Tooltips -->
+    <script type="text/javascript" src="{% static 'adminapp/js1/popper.min.js' %}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{% static 'adminapp/js1/bootstrap.min.js' %}"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{% static 'adminapp/js1/mdb.min.js' %}"></script>
+	
+    <script>
+    $(document).ready(() => {
+  // SideNav Initialization
+  $(".button-collapse").sideNav();
+	new WOW().init();
+	}) 
+{% endblock js_link %}
+

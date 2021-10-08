@@ -1,0 +1,41 @@
+{% load static %}
+<div class="card position-sticky shadow shadow-lg mb-3" style="width: 18rem; margin-left:30px;">
+    {% if request.user.profile %}
+      <img
+      src="{{request.user.profile.url}}"
+      class="card-img-top"
+      alt="..."
+    />
+    {% comment %} {% else %}
+      <img
+        src="{% static 'patient/img/default.png' %}"
+        class="img-fluid"
+      /> {% endcomment %}
+    {% endif %}
+  <div class="card-body">
+    <h5 class="card-title text-center">Hello {{request.user.username}}<span class="text-danger" style="font-size:15px;">({{request.user.gender}})</span></h5>
+  </div>
+    <li class="list-group-item"></li>
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item">Name: {{request.user.username}}</li>
+    <li class="list-group-item">Email ID: {{request.user.email}}</li>
+    <li class="list-group-item">First Name: {{request.user.first_name}}</li>
+    <li class="list-group-item">Last Name: {{request.user.last_name}}</li>
+    <li class="list-group-item">From: {{request.user.address}}</li>
+    <li class="list-group-item">Profession: {{request.user.who}}</li>
+    <li class="list-group-item">Speciality: {{request.user.master}}</li>
+    <li class="list-group-item">Phone: {{request.user.mobile}}</li>
+    <li class="list-group-item">Clinic address: {{request.user.clinic}}</li>
+    <li class="list-group-item">Note: {{request.user.some}}</li>
+    
+    
+    {% comment %} <p class="p-3 card-text">
+      Some quick example text to build on the card title and make up the bulk of the
+      card's content.
+    </p> {% endcomment %}
+  </ul>
+  <div class="card-body">
+    <a href="{% url 'docprofile' %}" class="card-link btn btn-secondary" style="width:100%;">Update Profile</a>
+    {% comment %} <a href="#" class="card-link">Another link</a> {% endcomment %}
+  </div>
+</div>

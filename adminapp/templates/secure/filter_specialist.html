@@ -1,0 +1,27 @@
+{% extends 'secure/master2.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+    <link rel="stylesheet" href="{% static 'css/mdb.min.css' %}" />
+
+    <style>
+        .change{
+            color:red;
+        }
+        .ch{
+            background-color:whitesmoke;
+        }
+    </style>
+{% endblock css_link %}
+{% block layout %}
+    <div class="text-center text-dark h2">Filter Doctor's by Speciality</div>
+    <hr>
+    
+{% endblock layout %}
+
+
+{% block js_link %}
+    <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+
+{% endblock js_link %}

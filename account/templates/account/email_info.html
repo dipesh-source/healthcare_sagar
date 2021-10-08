@@ -1,0 +1,40 @@
+{% extends 'secure/master.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+    <style>
+     .error{
+       color:red;
+     } 
+     .change{
+         color:red;
+     }
+    </style>
+{% endblock css_link %}
+
+
+{% block alldata %}
+
+<div class="container-sm mt-5">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6 mt-5">
+            <img src="{% static 'img/lock.png' %}" style="width:100%;" alt="" srcset="">
+            <div class="alert alert-primary my-0 g-0 m-0 pb-1 pt-1">
+                <div><span class="h4">Securily  </span> we have sent an email to reset password on <strong class="change">{{request.user.email}}..!</strong> </span></div> 
+            </div>
+        <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox" style="margin-left:75%;"  >Check Mail Box..!</a>
+
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+</div>
+
+{% endblock alldata %}
+
+
+{% block js_link %}
+
+{% endblock js_link %}
+

@@ -1,0 +1,22 @@
+{% extends "account/master.html" %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+    <!-- MDB -->
+    <link rel="stylesheet" href="{% static 'css/mdb.min.css' %}" />
+{% endblock css_link %}
+
+{% block alldata %}
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <div class="alert alert-danger h3 text-center shadow-lg">Check Your Mail Box, <span class="h4">We have sent mail to verify your account..!</span></div>
+            <br><br>
+            <a href="https://mail.google.com/" class="btn btn-outline-primary shadow" style="width:100%; ">Check Your Email Box..!</a>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+</div>
+{% endblock alldata %}

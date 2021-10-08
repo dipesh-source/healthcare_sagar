@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500&family=Baloo+Bhai+2&family=Lato&family=Montserrat:wght@500&family=Mulish:wght@300&family=Nunito&family=Open+Sans&family=Oswald&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=STIX+Two+Text&display=swap');
+/* font-family: 'Abhaya Libre', serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Mulish', sans-serif;
+font-family: 'Lato', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Oswald', sans-serif;*/
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    line-height: 20px;
+}
+.container1{
+    width: 100%;
+    height: 650px;
+}
+header{
+    width: 100%;
+    min-height: 650px;
+    overflow:hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    /* background-attachment: fixed; */
+    animation: bgimage 19s ease-in infinite;
+}
+@keyframes bgimage {
+    0%{
+        background-image: url(./woman-pointing-3188559__480.webp);
+    }
+    25%{
+        background-image: url(./bg_3.jpg);
+    }
+    50%{
+        background-image: url(./line.webp);
+    }
+    100%{
+        background-image: url(./corona-5032904__340.webp);
+    }
+}
+
+.sticky-nav{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:1;
+}
+/* ********************************************************************* */
+nav{
+    width: 100%;
+    height: 3.5rem;
+    transition: height .5s ease;
+    background-color: rgba(0, 0, 0, 0.781);
+}
+
+.navbar-brand > img {
+    max-width: 30px;    
+}
+
+.scroll-active .sticky-nav{
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 20px 50px rgba(201, 185, 231, 0.7);
+}
+
+.scroll-active .navbar{
+    height: 3rem;
+    background-color: #7ae9e9;
+}
+
+.scroll-active .nav-item .nav-link{
+    color: black!important;
+    font-weight:600;
+    font-family: 'Nunito', sans-serif;
+}
+.scroll-active .nav-item .nav-link:hover{
+    color: black!important;
+    background-color: white;
+    font-weight: 600;
+}
+/* *********************************************************************** */
+.navbar-nav .nav-item .nav-link{
+    color: white;
+    font-size: 1.1rem;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+}
+.navbar-nav .nav-item .nav-link:hover{
+    background-color: white;
+    color:rgb(0, 0, 0);
+    font-weight: 600;
+}
+@media screen and (max-width:999px) {
+    .navbar{
+        background-color: rgba(255, 255, 255, 0.575);
+        height: 50%;
+    }
+    .navbar-brand > img{
+        display: none;
+    }
+    .scroll-active .navbar{
+        background-color: white;
+        height: 50%;
+    }
+    .scroll-active .navbar{
+        background-color: white;
+    }
+    .scroll-active .navrg .nav-link{
+        color: black;
+        font-weight: 500;
+    }
+    .scroll-active .navbar-nav .nav-item .nav-link{
+        color: black!important;
+        font-family: 'Nunito', sans-serif;
+    }
+}
+.profiledropdown .dropdown-menu .dropdown-item{
+    color: black;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+}
+.profiledropdown .dropdown-menu .dropdown-item:hover{
+    background-color: rgba(31, 201, 201, 0.897);
+}
+.header-background > .header{
+    position: absolute;
+    text-transform: capitalize;
+    font-size: 10rem;
+    color: whitesmoke;
+    letter-spacing: 3px;
+    font-weight: 900;
+    top: 20%;
+    margin: 0px 0px 0px 10rem;
+    opacity: 0.9;
+}
+.header-background .btn > a{
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    font-size: 1.3rem;
+    text-transform: capitalize;
+    font-weight: bold;
+    font-family: 'Baloo Bhai 2', cursive;
+    color: black;
+    letter-spacing: 2px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.596);
+    background-color: rgba(25, 192, 192, 0.849);
+}
+.header-background .btn1 > a{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 1.3rem;
+    text-transform: capitalize;
+    font-weight: bold;
+    font-family: 'Baloo Bhai 2', cursive;
+    color: black;
+    letter-spacing: 2px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.596);
+    background-color: rgba(233, 233, 14, 0.918);
+}

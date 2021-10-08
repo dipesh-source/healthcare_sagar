@@ -1,0 +1,122 @@
+{% extends "doctor/doc_master.html" %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+    <style>
+      body{
+        background-color:whitesmoke;
+      }
+    </style>
+{% endblock css_link %}
+
+
+{% block layout %}
+<!--##################################################-->
+ {% if data %}
+ {% for dt in data %}
+              <div class="col-sm-4">
+                {% if dt.img %}
+                  <div><img src="{{dt.img.url}}" height="30%" width="20%" alt="" srcset=""></div>
+                {% endif %}
+                <div class="">Appoint Date: <mark>{{dt.when}}</mark></div>
+                <div class="">Patient Name: {{dt.patient}}</div>
+                <div class="">Patient Email: {{dt.gender}}</div>
+                <div class="">Disease: {{dt.disease}}</div>
+                <div class="">Note: {{dt.write}}</div>
+                <div class="">Address: {{dt.address}}</div>
+                <h1>{{dt.id}}</h1>
+                <a href="{% url 'update_date' dt.id %}" class="btn btn-primary">chage date</a>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="text-center"> 
+              <img src="{% static 'doctor/img/sorry.jpg' %}" width="300px" alt="" srcset="">
+            </div>
+            <div class="container text-center alert alert-danger h3 pb-2 pt-2 mb-10">Sorry, <b>{{request.user.username}}</b>, Nobody have made appointment with you..! <img src="{% static 'doctor/img/emoji.png' %}" alt="" width="4%" srcset=""></div>
+          {% endif %}
+<!--##################################################-->
+{% endblock layout %}
+
+
+
+{% block js_link %}
+
+{% endblock js_link %}
+
+
+
+
+
+
+
+
+<!--######################################-->
+{% comment %} {% extends 'secure/master.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+  <link rel="stylesheet" href="{% static 'doctor/css/nav2.css' %}">
+     <link rel="stylesheet" href="{% static 'doctor/css/docnav.css' %}">
+
+{% endblock css_link %}
+
+
+
+{% block alldata %}
+
+{% include 'doctor/nav2.html' %}
+{% include 'doctor/docnav.html' %}
+<a onclick="openNav()" style="cursor: pointer;" class="mt-5"><i class="fas fa-tasks mt-5" style="font-size:45px;"></i></a>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3">
+      {% include 'doctor/doc_card.html' %}
+    </div>
+
+    <div class="col-sm-9">
+      <div class="container">
+        <div class="row">
+          {% if data %}
+            {% for dt in data %}
+              <div class="col-sm-4">
+                {% if dt.img %}
+                  <div><img src="{{dt.img.url}}" height="30%" width="20%" alt="" srcset=""></div>
+                {% endif %}
+                <div class="">Appoint Date: <mark>{{dt.when}}</mark></div>
+                <div class="">Patient Name: {{dt.patient}}</div>
+                <div class="">Patient Email: {{dt.gender}}</div>
+                <div class="">Disease: {{dt.disease}}</div>
+                <div class="">Note: {{dt.write}}</div>
+                <div class="">Address: {{dt.address}}</div>
+                <a href="{% url 'update_date' dt.id %}" class="btn btn-primary">chage date</a>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="text-center"> 
+              <img src="{% static 'doctor/img/sorry.jpg' %}" width="300px" alt="" srcset="">
+            </div>
+            <div class="container text-center alert alert-danger h3 pb-2 pt-2 mb-10">Sorry, <b>{{request.user.username}}</b>, Nobody have made appointment with you..! <img src="{% static 'doctor/img/emoji.png' %}" alt="" width="4%" srcset=""></div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ 
+{% include 'account/footer.html' %}
+{% endblock alldata %}
+
+ 
+
+
+
+{% block js_link %}
+    <script src="{% static 'js/nav.js' %}"></script>
+    <script src="{% static 'doctor/js/docnav.js' %}"></script>
+
+{% endblock js_link %} {% endcomment %}
+

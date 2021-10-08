@@ -1,0 +1,144 @@
+{% extends "doctor/doc_master.html" %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+    <style>
+      body{
+         background-color: whitesmoke; 
+    }
+    .change{
+        color:red;
+    }
+    </style>
+{% endblock css_link %}
+
+
+{% block layout %}
+<!--##################################################-->
+ <form action="" method="POST" class="p-5 shadow shadow-lg" style="background-color: white; border-radius:15px;" enctype='multipart/form-data' novalidate>
+        {% csrf_token %}
+    <div class="alert alert-info text-center text-dark h3">Upload Post About Disease</div>
+     {{form.media}}
+    <div class="form-outline">
+        {{form.title}}
+        <label class="form-label" for="form1">{{form.title.label_tag}}</label>
+    </div>
+    <div class="change">{{form.title.errors|striptags}}</div>
+    <br>
+     
+        <label class="form-label" for="form1" style="color:black;">{{form.img.label_tag}}</label>
+        {{form.img}}
+     
+    <div class="change">{{form.img.errors|striptags}}</div>
+    <br>
+
+    <div class="form-outline">
+        {{form.dis}}
+        <label class="form-label" for="form1">{{form.dis.label_tag}}</label>
+    </div>
+    <div class="change">{{form.dis.errors|striptags}}</div>
+    <br>
+    {{form.info}}
+    <div class="change">{{form.info.errors|striptags}}</div>  
+    <br>
+    {{form.content}}
+    <div class="change">{{form.content.errors|striptags}}</div>  <br>
+
+    <button type="submit" value="submit" class="btn btn-danger btn-md">upload post</button>
+</form> <br><br>
+<!--##################################################-->
+{% endblock layout %}
+
+
+
+{% block js_link %}
+
+{% endblock js_link %}
+
+<!--########################################-->
+{% comment %} 
+{% extends 'doctor/master.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+<link rel="stylesheet" href="{% static 'doctor/css/nav2.css' %}">
+    <link rel="stylesheet" href="{% static 'doctor/css/docnav.css' %}">
+    <link rel="stylesheet" href="{% static 'doctor/css/posinfo.css' %}">
+<style>
+    body{
+         background-color: whitesmoke; 
+    }
+    .change{
+        color:red;
+    }
+</style>
+{% endblock css_link %}
+
+
+{% block alldata %}
+{% include 'doctor/nav2.html' %}
+ 
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="{% url 'dochome' %}">Home</a>
+    <a href="{% url 'dash' %}">Dashboard</a>
+  <a href="{% url 'post_data' %}">Upload Post</a>
+  <a href=" ">Info</a>
+  <a href="{% url 'time' %}">Manage Time</a>
+  <a href="{% url 'today' %}">Today Appointment</a>
+</div>
+
+ 
+
+ 
+<div id="main">
+<a onclick="openNav()" style="cursor: pointer;" class="mt-5"><i class="fas fa-tasks mt-5" style="font-size:45px;"></i></a>
+
+<div class="container">
+    <div class="row">
+        <form action="" method="POST" class="p-5 shadow shadow-lg" style="background-color: white; border-radius:15px;" enctype='multipart/form-data' novalidate>
+        {% csrf_token %}
+    <div class="alert alert-info text-center text-dark h3">Upload Post About Disease</div>
+     {{form.media}}
+    <div class="form-outline">
+        {{form.title}}
+        <label class="form-label" for="form1">{{form.title.label_tag}}</label>
+    </div>
+    <div class="change">{{form.title.errors|striptags}}</div>
+    <br>
+     
+        <label class="form-label" for="form1" style="color:black;">{{form.img.label_tag}}</label>
+        {{form.img}}
+     
+    <div class="change">{{form.img.errors|striptags}}</div>
+    <br>
+
+    <div class="form-outline">
+        {{form.dis}}
+        <label class="form-label" for="form1">{{form.dis.label_tag}}</label>
+    </div>
+    <div class="change">{{form.dis.errors|striptags}}</div>
+    <br>
+    {{form.info}}
+    <div class="change">{{form.info.errors|striptags}}</div>  
+    <br>
+    {{form.content}}
+    <div class="change">{{form.content.errors|striptags}}</div>  <br>
+
+    <button type="submit" value="submit" class="btn btn-primary">upload post</button>
+</form>
+    </div>
+</div>
+
+</div>
+
+
+{% include 'account/footer.html' %}
+{% endblock alldata %}
+
+{% block js_link %}
+    <script src="{% static 'js/nav.js' %}"></script>
+    <script src="{% static 'doctor/js/docnav.js' %}"></script>
+{% endblock js_link %} {% endcomment %}

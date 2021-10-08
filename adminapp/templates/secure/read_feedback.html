@@ -1,0 +1,85 @@
+{% extends 'secure/master2.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+    <link rel="stylesheet" href="{% static 'css/mdb.min.css' %}" />
+
+    <style>
+        body{
+            background-color:whitesmoke;
+        }
+        .change{
+            color:red;
+        }
+        .ch{
+            background-color:whitesmoke;
+        }
+        div.scrollmenu {
+        
+        overflow: auto;
+        white-space: nowrap;
+        }
+
+        div.scrollmenu a {
+        display: inline-block;
+        color: white;
+        text-align: center;
+        padding: 14px;
+        text-decoration: none;
+        }
+
+        div.scrollmenu a:hover {
+        background-color: #777;
+        }
+    </style>
+{% endblock css_link %}
+{% block layout %}
+ {% comment %} <span class="h3">{{count_data}}</span> {% endcomment %}
+        <div class="row"> 
+            <center> <img src="{% static 'adminapp/img/2554_sva_svaq.png' %}" style="height:110px; width:490px; border-radius:20px;" class="img-fluid shadow shadow-lg" alt="" srcset=""></center>
+            <div class="text-center text-black font-weight-bold h3">Patient's Feedback</div>
+        </div>
+        <hr>
+    {% if data %}
+    <div class="scrollmenu  mb-10">
+       <table class="table table-hover bg-white table-striped shadow shadow-lg">
+        <thead>
+            <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Patient</th>
+            <th scope="col">opinion</th>
+            <th scope="col">Text</th>
+            <th scope="col">Feedback</th>
+            <th scope="col">Post at</th>
+            <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+           {% for dt in data %}
+                <tr>
+                    <th scope="row">{{dt.id}}</th>
+                    <td class=""><b>{{dt.patint.username}}</b></td>
+                    <td><b>{{dt.select}}</b></td>
+                    <td><b>{{dt.text}}</b></td>
+                    <td><b>{{dt.excplain}}</b></td>
+                    <td><b>{{dt.fdate}}</b></td>
+                    <td>
+                        <form action="{% url 'fed_delete' dt.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">delete</button>
+                        </form>
+                    </td>
+                </tr>
+           {% endfor %}
+        </tbody>
+        </table>
+    </div>
+    {% endif %}
+{% endblock layout %}
+
+
+{% block js_link %}
+    <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+
+{% endblock js_link %}

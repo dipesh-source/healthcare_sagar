@@ -1,0 +1,335 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Admin Panel</title>
+	<!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'adminapp/css1/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'adminapp/css1/mdb.min.css' %}" rel="stylesheet">
+  <style>
+		/* Only for snippet */
+.double-nav .breadcrumb-dn {
+  color: #fff;
+}
+.button-collapse i {
+  color: #fff
+}
+	</style>
+  </head>
+  <body class="fixed-sn black-skin">
+    <!--Double navigation-->
+   <header>
+      <!-- Sidebar navigation -->
+        {% include 'secure/sidenav.html' %}
+      <!--/. Sidebar navigation -->
+
+      <!-- Navbar -->
+        {% include 'secure/newnav.html' %}
+      <!-- /.Navbar -->
+
+    </header>
+    <!--/.Double navigation-->
+<!--Main layout-->
+ <main>
+    <div class="jumbotron alert-danger alert p-4">
+        <div class="text-center h2">Available Specialist</div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+            <!--##########################-->
+                <!-- Card -->
+                <div class="card card-image"
+                style="background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+
+                <!-- Content -->
+                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                    <div>
+                    {% comment %} <h5 class="pink-text"><i class="fas fa-chart-pie"></i> Marketing</h5> {% endcomment %}
+                    <h1 class="card-title pt-2"><strong>Neurology</strong></h1>
+                    <button class="btn btn-success  btn-floating "><span class="h3">{{sp1}}</span></button>
+                    <p></p>
+                    {% comment %} <a class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a> {% endcomment %}
+                    </div>
+                </div>
+
+                </div>
+                <!-- Card -->
+            <!--##########################-->
+            </div>
+             <div class="col-sm-6">
+            <!--##########################-->
+                <!-- Card -->
+                <div class="card card-image"
+                style="background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+
+                <!-- Content -->
+                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                    <div>
+                    {% comment %} <h5 class="pink-text"><i class="fas fa-chart-pie"></i> Marketing</h5> {% endcomment %}
+                    <h1 class="card-title pt-2"><strong>Ophthalmology</strong></h1>
+                    <button class="btn btn-success  btn-floating "><span class="h3">{{sp2}}</span></button>
+                    <p></p>
+                    {% comment %} <a class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a> {% endcomment %}
+                    </div>
+                </div>
+
+                </div> <br>
+                <!-- Card -->
+            <!--##########################-->
+            </div>
+    
+            <div class="col-sm-6">
+            <!--##########################-->
+                <!-- Card -->
+                <div class="card card-image"
+                style="background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+
+                <!-- Content -->
+                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                    <div>
+                    {% comment %} <h5 class="pink-text"><i class="fas fa-chart-pie"></i> Marketing</h5> {% endcomment %}
+                    <h1 class="card-title pt-2"><strong>Dermatology</strong></h1>
+                    <button class="btn btn-success  btn-floating "><span class="h3">{{sp3}}</span></button>
+                    <p></p>
+                    {% comment %} <a class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a> {% endcomment %}
+                    </div>
+                </div>
+
+                </div>
+                <!-- Card -->
+            <!--##########################-->
+            </div>
+                 <div class="col-sm-6">
+            <!--##########################-->
+                <!-- Card -->
+                <div class="card card-image"
+                style="background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+
+                <!-- Content -->
+                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                    <div>
+                    {% comment %} <h5 class="pink-text"><i class="fas fa-chart-pie"></i> Marketing</h5> {% endcomment %}
+                    <h1 class="card-title pt-2"><strong>Surgical</strong></h1>
+                    <button class="btn btn-success  btn-floating "><span class="h3">{{sp4}}</span></button>
+                    <p></p>
+                    {% comment %} <a class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a> {% endcomment %}
+                    </div>
+                </div>
+
+                </div> <br>
+                <!-- Card -->
+            <!--##########################-->
+            </div>
+                  <div class="col-sm-6">
+            <!--##########################-->
+                <!-- Card -->
+                <div class="card card-image"
+                style="background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+
+                <!-- Content -->
+                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                    <div>
+                    {% comment %} <h5 class="pink-text"><i class="fas fa-chart-pie"></i> Marketing</h5> {% endcomment %}
+                    <h1 class="card-title pt-2"><strong>Cardiology</strong></h1>
+                    <button class="btn btn-success  btn-floating "><span class="h3">{{sp5}}</span></button>
+                    <p></p>
+                    {% comment %} <a class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a> {% endcomment %}
+                    </div>
+                </div>
+
+                </div> 
+                <!-- Card -->
+            <!--##########################-->
+            </div>
+            <div class="col-sm-6">
+            <!--##########################-->
+                <!-- Card -->
+                <div class="card card-image"
+                style="background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+
+                <!-- Content -->
+                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                    <div>
+                    {% comment %} <h5 class="pink-text"><i class="fas fa-chart-pie"></i> Marketing</h5> {% endcomment %}
+                    <h1 class="card-title pt-2"><strong>Dental</strong></h1>
+                    <button class="btn btn-success  btn-floating "><span class="h3">{{sp6}}</span></button>
+                    <p></p>
+                    {% comment %} <a class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a> {% endcomment %}
+                    </div>
+                </div>
+
+                </div> <br>
+                <!-- Card -->
+            <!--##########################-->
+            </div>
+              <div class="col-sm-6">
+            <!--##########################-->
+                <!-- Card -->
+                <div class="card card-image"
+                style="background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+
+                <!-- Content -->
+                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                    <div>
+                    {% comment %} <h5 class="pink-text"><i class="fas fa-chart-pie"></i> Marketing</h5> {% endcomment %}
+                    <h1 class="card-title pt-2"><strong>Traumatology</strong></h1>
+                    <button class="btn btn-success  btn-floating "><span class="h3">{{sp7}}</span></button>
+                    <p></p>
+                    {% comment %} <a class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a> {% endcomment %}
+                    </div>
+                </div>
+
+                </div>
+                <!-- Card -->
+            <!--##########################-->
+            </div>
+               <div class="col-sm-6">
+            <!--##########################-->
+                <!-- Card -->
+                <div class="card card-image"
+                style="background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+
+                <!-- Content -->
+                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                    <div>
+                    {% comment %} <h5 class="pink-text"><i class="fas fa-chart-pie"></i> Marketing</h5> {% endcomment %}
+                    <h1 class="card-title pt-2"><strong>General Surgeon</strong></h1>
+                    <button class="btn btn-success  btn-floating "><span class="h3">{{sp8}}</span></button>
+                    <p></p>
+                    {% comment %} <a class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a> {% endcomment %}
+                    </div>
+                </div>
+
+                </div> <br>
+                <!-- Card -->
+            <!--##########################-->
+            </div>
+                 <div class="col-sm-6">
+            <!--##########################-->
+                <!-- Card -->
+                <div class="card card-image"
+                style="background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+
+                <!-- Content -->
+                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                    <div>
+                    {% comment %} <h5 class="pink-text"><i class="fas fa-chart-pie"></i> Marketing</h5> {% endcomment %}
+                    <h1 class="card-title pt-2"><strong>Medicine Specialists</strong></h1>
+                    <button class="btn btn-success  btn-floating "><span class="h3">{{sp9}}</span></button>
+                    <p></p>
+                    {% comment %} <a class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a> {% endcomment %}
+                    </div>
+                </div>
+
+                </div>
+                <!-- Card -->
+            <!--##########################-->
+            </div>
+                   <div class="col-sm-6">
+            <!--##########################-->
+                <!-- Card -->
+                <div class="card card-image"
+                style="background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+
+                <!-- Content -->
+                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                    <div>
+                    {% comment %} <h5 class="pink-text"><i class="fas fa-chart-pie"></i> Marketing</h5> {% endcomment %}
+                    <h2 class="card-title pt-2"><strong>Sports Medicine Specialists</strong></h2>
+                    <button class="btn btn-success  btn-floating "><span class="h3">{{sp10}}</span></button>
+                    <p></p>
+                    {% comment %} <a class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a> {% endcomment %}
+                    </div>
+                </div>
+
+                </div> <br>
+                <!-- Card -->
+            <!--##########################-->
+            </div>
+                   <div class="col-sm-6">
+            <!--##########################-->
+                <!-- Card -->
+                <div class="card card-image"
+                style="background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+
+                <!-- Content -->
+                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                    <div>
+                    {% comment %} <h5 class="pink-text"><i class="fas fa-chart-pie"></i> Marketing</h5> {% endcomment %}
+                    <h1 class="card-title pt-2"><strong>Pediatrics</strong></h1>
+                    <button class="btn btn-success  btn-floating "><span class="h3">{{sp11}}</span></button>
+                    <p></p>
+                    {% comment %} <a class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a> {% endcomment %}
+                    </div>
+                </div>
+
+                </div> <br>
+                <!-- Card -->
+            <!--##########################-->
+            </div>
+            
+                    <div class="col-sm-6">
+            <!--##########################-->
+                <!-- Card -->
+                <div class="card card-image"
+                style="background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+
+                <!-- Content -->
+                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                    <div>
+                    {% comment %} <h5 class="pink-text"><i class="fas fa-chart-pie"></i> Marketing</h5> {% endcomment %}
+                    <h1 class="card-title pt-2"><strong>Nutrition Counselling</strong></h1>
+                    <button class="btn btn-success  btn-floating "><span class="h3">{{sp12}}</span></button>
+                    <p></p>
+                    {% comment %} <a class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a> {% endcomment %}
+                    </div>
+                </div>
+
+                </div>
+                <!-- Card -->
+            <!--##########################-->
+            </div>
+            
+        </div>
+    </div>
+</main>
+<!--/Main layout-->
+
+    <!--footer-->
+        <div class="">{% include 'secure/newfooter.html' %}</div>
+    <!--/footer-->
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="{% static 'adminapp/js1/jquery-3.3.1.min.js' %}"></script>
+    <!-- Tooltips -->
+    <script type="text/javascript" src="{% static 'adminapp/js1/popper.min.js' %}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{% static 'adminapp/js1/bootstrap.min.js' %}"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{% static 'adminapp/js1/mdb.min.js' %}"></script>
+	
+    <script>
+    $(document).ready(() => {
+  // SideNav Initialization
+  $(".button-collapse").sideNav();
+	new WOW().init();
+	}) 
+    </script>
+  </body>
+</html>

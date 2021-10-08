@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600&family=Merienda:wght@700&display=swap');
+body{
+    background-color: whitesmoke;
+}
+.se{
+    color: black;
+    font-size: 70px;
+    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Merienda', cursive;
+}
+.container .form-inline{
+    position: relative;
+}
+.container .form-inline .form-control{
+    /* border: 2px solid rgba(54, 50, 50, 0.555); */
+    display: block;
+    width: 650px;
+    margin: auto;
+    background-color: white;
+    border-top-left-radius: 17px;
+    border-bottom-left-radius: 17px;
+    border-top-right-radius: 17px;
+    border-bottom-right-radius: 17px;
+    height: 45px;
+    color: black;
+    font-size: 1.3rem;
+}
+.container .form-inline button{
+    border: none; 
+    position: absolute;
+    top: 5px;
+    right: 330px;
+    color: black;
+    font-size: 1rem;
+}
+.drcard .card{
+    height: 270px;
+}
+.drcard .card  img {
+    height: 230px;
+}

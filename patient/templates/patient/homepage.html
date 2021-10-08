@@ -1,0 +1,575 @@
+{% extends 'patient/pat_master.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+     <!-- Font Awesome -->
+  {% comment %} <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"> {% endcomment %}
+    {% comment %} <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> {% endcomment %}
+    {% comment %} <link rel="stylesheet" href="{% static 'css/nav.css' %}"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'patient/css/homepage.css' %}">
+    <style>
+        .error{
+            color:red;
+        }
+    </style>
+{% endblock css_link %}
+
+{% block alldata %}
+{% include 'patient/success_again.html' %}
+{% comment %} {% include 'account/nav.html' %} {% endcomment %}
+
+{% comment %} <div class="alert alert-primary h5">Welcome {{request.user.email}}</div> {% endcomment %}
+<div class="container py-0" >
+   <div class="main">
+     <div class="row">
+        <div class="col-xl-6 col-12">
+            <img src="{% static 'patient/img/about1.png' %}" class="img-fluid" alt="">
+        </div>
+        <div class="col-xl-4 col-12">
+            <div class="details p-5 shadow shadow-lg"  style="background-color:white;">
+                <h1>Create A Healthy Life You Love!</h1>
+                <h3>Almost before we knew it, we had left the ground</h3>
+                <p>Praesent porttitor, nulla vitae posuere iaculis, arcu nisl dignissim dolor, a pretium mi sem ut ipsum. Fusce fermentum. Pellentesque libero tortor, tincidunt et.</p>                
+                <img src="{% static 'patient/img/about1.svg' %}" class="img-fluid me-4 mt-4" alt="">
+                <img src="{% static 'patient/img/about2.svg' %}" class="img-fluid mt-4" alt="">
+            </div>
+            {% comment %} <div class="icon ps-5 border border-2">
+            </div> {% endcomment %}
+        </div>
+    </div>
+   </div>
+</div>
+<!--##################################################################################-->
+ 
+              {% if doc.has_previous %}
+                  <a href="?page={{doc.previous_page_number}}">Previous</a>
+              {% endif %}
+              <span>{{doc.number}}</span>
+              
+              {% if doc.has_next %}
+                  <a href="?page={{doc.next_page_number}}">Next</a>
+              {% endif %}
+ 
+<!--##################################################################################-->
+<div class="container-fluid mt-5">
+    <div class="ourservices">
+        <div class="row" style="background-color:whitesmoke">
+            <div class="col-12 col-lg-7">
+                <div class="services">
+                    <h1>our services</h1>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <div class="row services1" >
+                            <div class="col-3">
+                                 <i class="fas fa-ambulance"></i>
+                            </div>
+                            <div class="col-8 sr_details  shadow shadow-lg" style="background-color:white">
+                                <h3>Emergency Services</h3>
+                                <p>Emergency medicine is the medical speciality concerned with the care of illnesses or injuries requiring immediate medical attention.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="col-12 col-sm-6">
+                        <div class="row services2">
+                            <div class="col-3 me-2">
+                                 <i class="fas fa-stethoscope"></i>
+                            </div>
+                            <div class="col-8 sr_details  shadow shadow-lg" style="background-color:white">
+                                <h3>Outdoors Checkup</h3>
+                                <p>Emergency medicine is the medical speciality concerned with the care of illnesses or injuries requiring immediate medical attention.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="col-12 col-sm-6">
+                        <div class="row services1">
+                            <div class="col-3">
+                                 <i class="fas fa-user-md"></i>
+                            </div>
+                            <div class="col-8 sr_details  shadow shadow-lg" style="background-color:white">
+                                <h3>Qualified Doctors</h3>
+                                <p>Emergency medicine is the medical speciality concerned with the care of illnesses or injuries requiring immediate medical attention.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="col-12 col-sm-6">
+                        <div class="row services2" >
+                            <div class="col-3 me-2">
+                                 <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="col-8 sr_details  shadow shadow-lg" style="background-color:white">
+                                <h3>24 Hours Service</h3>
+                                <p>Emergency medicine is the medical speciality concerned with the care of illnesses or injuries requiring immediate medical attention.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="col-12 col-lg-4" style="width:550px">
+         {% if request.user.is_authenticated %}
+        <form action="" method="POST" class="shadow shadow-lg p-5"  style="background-color:white;" novalidate>
+            {% csrf_token %}
+            <div class="text-center h3">Make Inquiry</div>
+            <hr>
+            {% if pform %}
+                {% for pf in pform %}
+                    {{pf.non_field_error}}
+                {% endfor %}
+            {% endif %}
+            {% if pform %}
+                 <div class="md-form">
+                    {{pform.about}}
+                    <label class="form-label" for="form1">{{pform.about.label_tag}}</label>
+                </div>
+                <div class="error">{{pform.about.errors|striptags}}</div>
+                <br>
+                  <div class="md-form primary-textarea">
+                    {{pform.message}}
+                    <label class="form-label" for="form1">{{pform.message.label_tag}}</label>
+                </div>
+                <div class="error">{{pform.message.errors|striptags}}</div>
+                <br>
+            {% endif %}
+             <button type="submit" class="btn btn-primary">Create query</button>
+        </form>
+        {% else %}
+            <h1>Please Login</h1>
+        {% endif %}
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="container-fluid bgimage">
+    <div class="row mt-5">
+        <div class="banner">
+            <div class="details">
+                <h1>your health is our priority</h1>
+                <p class="">We can manage your dream building A small river named Duden flows by their place</p>
+                <a href="{% url 'all_doctor' %}" role="button" class="btn btn-lg">Get more info</a>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+<section class="doctorcard">
+<div class="container mt-5" style="background-color:whitesmoke">
+        <div class="data">
+            <h1 class="text-center">Our Qualified Doctors</h1>
+            <hr>
+            <p class="text-center text-justify">Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row" >
+            {% for qa in quali %}
+                <div class="col-sm-3">
+                <div class="card shadow shadow-lg  hover-overlay ripple"><!--data-mdb-ripple-color="light"-->
+                <img
+                    src="{{qa.img.url}}"
+                    class="card-img-top"
+                    alt="..."
+                />
+                <div class="card-body bg-dark">
+                    <h5 class="card-title text-center" style="color:white;">{{qa.name}}</h5>
+                    <p class="text-center mb-0" style="color:white;">
+                        {{qa.mas}}
+                    </p>
+                            {% comment %} <a href="#!" class="btn btn-primary">Button</a> {% endcomment %}
+                {% comment %} <button type="submit" class="btn btn-primary" style="width:100%;">Book Now</button> {% endcomment %}
+                </div>
+             </div>
+            </div>
+        {% endfor %}
+    </div>
+    <hr>
+</div>
+</section>
+<!--#####################################################################-->
+<!--Streak-->
+    <div class="streak streak-photo streak-long-2" style="background-image:url('https://mdbootstrap.com/img/Others/food5.jpg')">
+      <div class="mask flex-center rgba-black-strong">
+        <div class="container">
+
+          <h2 class="text-center text-white mb-5 text-uppercase font-weight-bold wow fadeIn" data-wow-delay="0.2s">Great
+            patient trusted our services</h2>
+
+          <!--First row-->
+          <div class="row text-white text-center wow fadeIn" data-wow-delay="0.2s">
+
+            <!--First column-->
+            <div class="col-md-3 mb-2">
+              <h1 class="green-text mb-1 font-weight-bold py-3">+950</h1>
+              <p class="mb-3">Happy clients</p>
+            </div>
+            <!--/First column-->
+
+            <!--Second column-->
+            <div class="col-md-3 mb-2">
+              <h1 class="green-text mb-1 font-weight-bold py-3">+150</h1>
+              <p class="mb-3">Projects completed</p>
+            </div>
+            <!--/Second column-->
+
+            <!--Third column-->
+            <div class="col-md-3 mb-2">
+              <h1 class="green-text mb-1 font-weight-bold py-3">+85</h1>
+              <p class="mb-3">Winning awards</p>
+            </div>
+            <!--/Third column-->
+
+            <!--Fourth column-->
+            <div class="col-md-3">
+              <h1 class="green-text mb-1 font-weight-bold py-3">+246</h1>
+              <p class="mb-3">Cups of coffee</p>
+
+            </div>
+            <!--/Fourth column-->
+
+          </div>
+          <!--/First row-->
+        </div>
+      </div>
+    </div>
+    <!--/Streak-->
+<!--#####################################################################-->
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="blog">
+             <div class="text-center nm">Gets Every Single Updates Here</div>
+            <p class="text-center mt-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+            <hr>
+        </div>
+    </div>
+</div>
+<div class="container mb-5">
+    <div class="row">
+        {% for bg in blog %}
+            <div class="col-sm-4">
+                <div class="card shadow shadow-lg" style="height:100%; ">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                    <img src="{{bg.img.url}}" class="img-fluid" style="height:100%;"/>
+                    <a href="#!">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                </div>
+                <div class="card-body" style="background-color: ">
+                    <h5 class="card-title">{{bg.title}}</h5>
+                    <p class="card-text">{{bg.dis}}</p>
+                    <p class="card-text"> </p>
+                    <a href="#!" class="btn btn-primary">Button</a>
+                </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% include 'patient/read_feed.html' %}
+{% endblock alldata %}
+
+{% block finaldata %}
+ 
+             
+{% endblock finaldata %}
+
+{% block js_link %}
+    {% comment %} <script src="{% static 'js/nav.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init(
+        offset = 120,
+        delay = 400,
+        duration = 400,
+    );
+  </script> {% endcomment %}
+{% endblock js_link %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!--First slide-->
+              <div class="carousel-item active">
+
+                <!--Grid column-->
+                <div class="col-md-4">
+                  <div class="testimonial">
+                    <!--Avatar-->
+                    <div class="avatar mx-auto">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(26).jpg"
+                        class="rounded-circle img-fluid">
+                    </div>
+                    <!--Content-->
+                    <h4 class="font-weight-bold mt-4">Anna Deynah</h4>
+                    <h6 class="blue-text font-weight-bold my-3">Web Designer</h6>
+                    <p class="font-weight-normal"><i class="fas fa-quote-left pr-2"></i>
+                      consectetur adipisicing elit. Quod eos id officiis hic tenetur.</p>
+                    <!--Review-->
+                    <div class="grey-text">
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star-half-alt"> </i>
+                    </div>
+                  </div>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-4 clearfix d-none d-md-block">
+                  <div class="testimonial">
+                    <!--Avatar-->
+                    <div class="avatar mx-auto">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg"
+                        class="rounded-circle img-fluid">
+                    </div>
+                    <!--Content-->
+                    <h4 class="font-weight-bold mt-4">John Doe</h4>
+                    <h6 class="blue-text font-weight-bold my-3">Web Developer</h6>
+                    <p class="font-weight-normal"><i class="fas fa-quote-left pr-2"></i>Ut enim ad minima veniam, quis
+                      nostrum exercitationem ullam corporis laboriosam.</p>
+                    <!--Review-->
+                    <div class="grey-text">
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                    </div>
+                  </div>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-4 clearfix d-none d-md-block">
+                  <div class="testimonial">
+                    <!--Avatar-->
+                    <div class="avatar mx-auto">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg"
+                        class="rounded-circle img-fluid">
+                    </div>
+                    <!--Content-->
+                    <h4 class="font-weight-bold mt-4">Abbey Clark</h4>
+                    <h6 class="blue-text font-weight-bold my-3">Photographer</h6>
+                    <p class="font-weight-normal"><i class="fas fa-quote-left pr-2"></i>Quis autem vel eum iure
+                      reprehenderit qui in ea voluptate velit esse quam nihil molestiae.</p>
+                    <!--Review-->
+                    <div class="grey-text">
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="far fa-star"> </i>
+                    </div>
+                  </div>
+                </div>
+                <!--Grid column-->
+
+              </div>
+              <!--First slide-->
+
+              <!--Second slide-->
+              <div class="carousel-item">
+
+                <!--Grid column-->
+                <div class="col-md-4">
+                  <div class="testimonial">
+                    <!--Avatar-->
+                    <div class="avatar mx-auto">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(4).jpg"
+                        class="rounded-circle img-fluid">
+                    </div>
+                    <!--Content-->
+                    <h4 class="font-weight-bold mt-4">Blake Dabney</h4>
+                    <h6 class="blue-text font-weight-bold my-3">Web Designer</h6>
+                    <p class="font-weight-normal"><i class="fas fa-quote-left pr-2"></i>Ut enim ad minima veniam, quis
+                      nostrum exercitationem ullam corporis laboriosam.</p>
+                    <!--Review-->
+                    <div class="grey-text">
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star-half-alt"> </i>
+                    </div>
+                  </div>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-4 clearfix d-none d-md-block">
+                  <div class="testimonial">
+                    <!--Avatar-->
+                    <div class="avatar mx-auto">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(6).jpg"
+                        class="rounded-circle img-fluid">
+                    </div>
+                    <!--Content-->
+                    <h4 class="font-weight-bold mt-4">Andrea Clay</h4>
+                    <h6 class="blue-text font-weight-bold my-3">Front-end developer</h6>
+                    <p class="font-weight-normal"><i class="fas fa-quote-left pr-2"></i>
+                      consectetur adipisicing elit. Quod eos id officiis hic tenetur quae.</p>
+                    <!--Review-->
+                    <div class="grey-text">
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                    </div>
+                  </div>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-4 clearfix d-none d-md-block">
+                  <div class="testimonial">
+                    <!--Avatar-->
+                    <div class="avatar mx-auto">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(7).jpg"
+                        class="rounded-circle img-fluid">
+                    </div>
+                    <!--Content-->
+                    <h4 class="font-weight-bold mt-4">Cami Gosse</h4>
+                    <h6 class="blue-text font-weight-bold my-3">Phtographer</h6>
+                    <p class="font-weight-normal"><i class="fas fa-quote-left pr-2"></i>At vero eos et accusamus et
+                      iusto odio dignissimos ducimus qui blanditiis praesentium.</p>
+                    <!--Review-->
+                    <div class="grey-text">
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="far fa-star"> </i>
+                    </div>
+                  </div>
+                </div>
+                <!--Grid column-->
+
+              </div>
+              <!--Second slide-->
+
+              <!--Third slide-->
+              <div class="carousel-item">
+
+                <!--Grid column-->
+                <div class="col-md-4">
+                  <div class="testimonial">
+                    <!--Avatar-->
+                    <div class="avatar mx-auto">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(8).jpg"
+                        class="rounded-circle img-fluid">
+                    </div>
+                    <!--Content-->
+                    <h4 class="font-weight-bold mt-4">Bobby Haley</h4>
+                    <h6 class="blue-text font-weight-bold my-3">Web Developer</h6>
+                    <p class="font-weight-normal"><i class="fas fa-quote-left pr-2"></i>
+                      consectetur adipisicing elit. Quod eos id officiis hic tenetur quae.</p>
+                    <!--Review-->
+                    <div class="grey-text">
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                    </div>
+                  </div>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-4 clearfix d-none d-md-block">
+                  <div class="testimonial">
+                    <!--Avatar-->
+                    <div class="avatar mx-auto">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(10).jpg"
+                        class="rounded-circle img-fluid">
+                    </div>
+                    <!--Content-->
+                    <h4 class="font-weight-bold mt-4">Elisa Janson</h4>
+                    <h6 class="blue-text font-weight-bold my-3">Marketer</h6>
+                    <p class="font-weight-normal"><i class="fas fa-quote-left pr-2"></i>At vero eos et accusamus et
+                      iusto odio dignissimos ducimus qui blanditiis praesentium.</p>
+                    <!--Review-->
+                    <div class="grey-text">
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star-half-alt"> </i>
+                    </div>
+                  </div>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-4 clearfix d-none d-md-block">
+                  <div class="testimonial">
+                    <!--Avatar-->
+                    <div class="avatar mx-auto">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(9).jpg"
+                        class="rounded-circle img-fluid">
+                    </div>
+                    <!--Content-->
+                    <h4 class="font-weight-bold mt-4">Rob Jacobs</h4>
+                    <h6 class="blue-text font-weight-bold my-3">Front-end developer</h6>
+                    <p class="font-weight-normal"><i class="fas fa-quote-left pr-2"></i>Ut enim ad minima veniam, quis
+                      nostrum exercitationem ullam corporis laboriosam.</p>
+                    <!--Review-->
+                    <div class="grey-text">
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="fas fa-star"> </i>
+                      <i class="far fa-star"> </i>
+                    </div>
+                  </div>
+                </div>
+                <!--Grid column-->
+
+              </div>
+              <!--Third slide-->

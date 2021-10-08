@@ -1,0 +1,45 @@
+{% extends 'patient/pat_master.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+  <link rel="stylesheet" href="{% static 'patient/css/doc_find.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'patient/css/nav2.css' %}"> {% endcomment %}
+    <style>
+     .error{
+       color:red;
+     } 
+      
+    </style>
+{% endblock css_link %}
+
+{% block header %}
+  {% include 'patient/success_nav.html' %}
+{% endblock header %}
+
+
+
+
+{% block alldata %}
+{% comment %} {% include 'patient/nav2.html' %} {% endcomment %}
+ <h1>dipesh parmar</h1>
+ {% if data %}
+{% for dt in data %}
+  
+  {{dt.day}}
+  {{dt.start_time}}
+  {{dt.end_time}}
+  
+{% endfor %}
+{% else %}
+    <h1>Doctor not available</h1>  
+  {% endif %}
+ 
+ {% endblock alldata %}
+
+{% block js_link %}
+ 
+    <script src="{% static 'js/nav.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{% endblock js_link %}

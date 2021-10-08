@@ -1,0 +1,126 @@
+{% load static %}
+<!--##############################################################-->
+
+<header class="header-background">
+ <div class="sticky-nav">
+  <!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+
+
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+     <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Left links -->
+        <a class="navbar-brand mt-2 mt-lg-0" href=" ">
+        <img
+          src="{% static 'img/brand.png' %}"
+          alt=""
+          loading="lazy"
+        />
+      </a>
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a href="{% url 'dochome' %}" class="nav-link active" style="background-color:black; border-radius:6px; color:white!important;">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="" class="nav-link">About</a>
+        </li>
+        {% comment %} <li class="nav-item">
+          <a href="" class="nav-link">Doctor</a>
+        </li>
+        <li class="nav-item">
+          <a href="" class="nav-link">Appointment</a>
+        </li>
+        <li class="nav-item">
+          <a href="" class="nav-link">Blog</a>
+        </li>
+        <li class="nav-item">
+          <a href="" class="nav-link">dipesh</a>
+        </li>
+        <li class="nav-item"> {% endcomment %}
+          {% comment %} <span onclick="openNav()" style="cursor: pointer;" class="btn btn-primary mt-5">open</span> {% endcomment %}
+        {% comment %} </li> {% endcomment %}
+         
+      </ul>
+      <ul class="navbar-nav d-flex flex-row">
+        <!-- Icons -->
+        <li class="nav-item me-3 mt-2 me-lg-0">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+        {% if not request.user.is_authenticated %}
+          <li class="nav-item me-3 me-lg-0">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+        {% endif %}
+        {% if request.user.is_authenticated %}
+        <!-- Icon dropdown -->
+        <li class="nav-item me-3 me-lg-0 dropdown profiledropdown">
+          <a
+            class="nav-link dropdown-toggle hidden-arrow"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >
+          {% if request.user.profile %}
+          <img
+          src="{{request.user.profile.url}}"
+          class="rounded-circle"
+          height="35"
+          alt=""
+          loading="lazy"
+         style="background-color: white;"/>
+         {% comment %} {% else %}
+            <img
+          src="{% static 'patient/img/default.png' %}"
+          class="rounded-circle"
+          height="35"
+          alt=""
+          loading="lazy"
+         style="background-color: white;"/> {% endcomment %}
+         {% endif %}
+        </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" href="{% url 'docprofile' %}">profile</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Setting</a>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item" href="{% url 'ulogout' %}">Logout</a>
+            </li>
+          </ul>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+ </div>
+<div class="header">
+    
+</div>
+</header>
+
+<div class="demo-content">
+
+</div>
+
+<!--##############################################################-->

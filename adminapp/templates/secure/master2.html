@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Material Design Bootstrap Template</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+      
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'adminapp/css1/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'adminapp/css1/mdb.min.css' %}" rel="stylesheet">
+      <style>
+		/* Only for snippet */
+.double-nav .breadcrumb-dn {
+  color: #fff;
+}
+.button-collapse i {
+  color: #fff
+}
+	</style>
+    {% block css_link %}
+    
+    {% endblock css_link %}
+  </head>
+  <body class="fixed-sn black-skin">
+  
+    <!--Double navigation-->
+    <header>
+      <!-- Sidebar navigation -->
+        {% include 'secure/sidenav.html' %}
+      <!--/. Sidebar navigation -->
+
+      <!-- Navbar -->
+        {% include 'secure/newnav.html' %}
+      <!-- /.Navbar -->
+    </header>
+    <!--/.Double navigation-->
+
+    <!--Main layout-->
+    <main>
+      {% block layout %}
+      
+      {% endblock layout %}
+    </main>
+    <!--/Main layout-->
+
+    <!--footer-->
+        {% include 'secure/newfooter.html' %}
+    <!--/footer-->
+
+      <!-- SCRIPTS -->
+      <!-- JQuery -->
+      <script type="text/javascript" src="{% static 'adminapp/js1/jquery-3.3.1.min.js' %}"></script>
+      <!-- Tooltips -->
+      <script type="text/javascript" src="{% static 'adminapp/js1/popper.min.js' %}"></script>
+      <!-- Bootstrap core JavaScript -->
+      <script type="text/javascript" src="{% static 'adminapp/js1/bootstrap.min.js' %}"></script>
+      <!-- MDB core JavaScript -->
+      <script type="text/javascript" src="{% static 'adminapp/js1/mdb.min.js' %}"></script>
+      {% block js_link %}
+
+      {% endblock js_link %}
+      <script>
+        $(document).ready(() => {
+        // SideNav Initialization
+        $(".button-collapse").sideNav();
+        new WOW().init();
+        }) 
+      </script>
+  </body>
+</html>

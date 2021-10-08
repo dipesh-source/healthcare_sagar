@@ -1,0 +1,43 @@
+{% extends 'secure/master.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+ <style>
+     .error{
+       color:red;
+     } 
+  </style>
+{% endblock css_link %}
+
+{% block alldata %}
+    {% comment %} {% include 'account/nav.html' %} {% endcomment %}
+    {% if request.user.is_authenticated %}
+        <h1>u r authenticated</h1>
+        <hr>
+        <h3>
+            {{request.user.is_authenticated}} <br>
+            {{request.user.is_superuser}} <br>
+            {{request.user.is_staff}} <br>
+            {{request.user.is_active}} <br>
+            {{request.user.username}} <br>
+            {{request.user.email}} <br>
+            {{request.user.password}} <br>
+            {{request.user.first_name}} <br>
+            {{request.user.last_name}} <br>
+            {{request.user.date_joined}} <br>
+            {{request.user.last_login}}
+
+        </h3>
+    {% else %}
+        <h1>you are not</h1>
+    {% endif %}
+        <a href="{% url  'ulogout' %}">Logout</a>
+{% include 'account/footer.html' %}
+{% endblock alldata %}
+
+
+{% block js_link %}
+
+{% endblock js_link %}
+ 

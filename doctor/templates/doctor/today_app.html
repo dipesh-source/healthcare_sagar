@@ -1,0 +1,266 @@
+{% extends "doctor/doc_master.html" %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+    {% comment %} <link rel="stylesheet" href="{% static 'doctor/css/todo.css' %}"> {% endcomment %}
+
+    <style>
+      body{
+        background-color:whitesmoke;
+      }
+    </style>
+{% endblock css_link %}
+
+
+{% block layout %}
+<!--##################################################-->
+<!-- Card -->
+<div class="card testimonial-card purple-gradient">
+
+  <!-- Background color -->
+  <div class="card-up indigo lighten-1 peach-gradient"></div>
+
+  <!-- Avatar -->
+  <div class="avatar mx-auto white">
+    {% if request.user.profile %}
+    <img src="{{request.user.profile.url}}" class="rounded-circle"
+      alt="woman avatar">
+    
+    {% else %}
+      <p class="text-center">No Profile</p>
+    {% endif %}
+  </div>
+
+  <!-- Content -->
+  <div class="card-body">
+    <!-- Name -->
+    <h4 class="card-title"><span class="">Hello, </span>{{request.user.username}}</h4>
+    <hr>
+    <!-- Quotation -->
+    <p><i class="fas fa-quote-left"></i> Lore adipisicing elit. Eos, adipisci</p>
+  </div>
+
+</div>
+<!-- Card -->
+<!--##################################################-->
+<div class="container mt-5">
+  <div class="row">
+    {% if today_my %}
+    {% for dt in today_my %}
+      <div class="col-sm-3">
+        <!-- Card -->
+        <div class="card testimonial-card">
+
+          <!-- Background color -->
+          <div class="card-up indigo lighten-1 blue-gradient">
+            <p class="text-center mt-3 font-weight-bold text-white">{{dt.when}}</p>
+          </div>
+
+          <!-- Avatar -->
+          <div class="avatar mx-auto white">
+            {% if dt.img %}
+              <img src="{{dt.img.url}}" class="rounded-circle img-fluid"
+              alt="woman avatar">
+            {% else %}
+                <img
+                src="{% static 'patient/img/default.png' %}"
+                class="img-fluid"
+                />
+            {% endif %}
+          </div>
+
+          <!-- Content -->
+          <div class="card-body">
+            <!-- Name -->
+            <h4 class="card-title">{{dt.patient}}</h4>
+            {% comment %} <hr> {% endcomment %}
+            <!-- Quotation -->
+            {% comment %} <p><i class="fas fa-quote-left"></i>{{dt.disease}}</p> {% endcomment %}
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-4  ">
+                  <a href="{% url 'dochome' %}" style="margin-left:30%%;" class="btn btn-purple btn-floating"><i class="fas fa-home" style="color:white; font-size:25px;"></i></a>
+                </div>
+                <div class="col-sm-4  ">
+              <form action="{% url 'dele1' dt.id %}" method="POST">
+              {% csrf_token %}
+                <!--###############-->
+                <!-- Button trigger modal-->
+                <button type="button" class="btn btn-floating bg-danger" data-toggle="modal" data-target="#modalConfirmDelete"><i class="fas fa-trash" style=""></i></button>
+
+                <!--Modal: modalConfirmDelete-->
+                <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+                    <!--Content-->
+                    <div class="modal-content text-center">
+                      <!--Header-->
+                      <div class="modal-header d-flex justify-content-center">
+                        <p class="heading">Are you sure?</p>
+                      </div>
+
+                      <!--Body-->
+                      <div class="modal-body">
+
+                        <i class="fas fa-times fa-4x animated rotateIn"></i>
+
+                      </div>
+
+                      <!--Footer-->
+                      <div class="modal-footer flex-center">
+                        <button type="submit" class="btn btn-danger ">Delete</button>
+                        <a type="button" class="btn  btn-success waves-effect" data-dismiss="modal">No</a>
+                      </div>
+                    </div>
+                    <!--/.Content-->
+                  </div>
+                </div>
+                <!--Modal: modalConfirmDelete-->
+                <!--###############-->
+            </form>
+                </div>
+                <div class="col-sm-4  ">
+            <a href="{% url 'treatment' dt.id %}" class="btn btn-info btn-floating "><i class="fas fa-notes-medical" style="font-size:200%;"></i></a>
+
+                </div>
+              </div>
+            </div>
+            
+            {% comment %} <i class="fas fa-home"></i> {% endcomment %}
+           
+          </div> 
+
+        </div> <br>
+      </div>
+    {% endfor %}
+    {% else %}
+
+          <div class="text-capitalize text-center mt-3 h3 text-black">{{date}}</div>
+          <hr>
+          <div>
+            <center><img src="{% static 'doctor/img/today.png' %}" width="450px" class="" alt="" srcset=""></center>
+            <div class="text-center h1 text-danger">No today's appointment</div>
+            <center>
+              <a href="{% url 'dochome' %}" class="mb-4 btn btn-outline-danger btn-rounded btn-lg">Bact to home</a>
+            </center>
+          </div>
+
+    {% endif %}
+  </div>
+</div>
+<!--##################################################-->
+{% comment %} <div id="myDIV" class="header">
+  <h2>My To Do List</h2>
+  <input type="text" id="myInput" placeholder="Title...">
+  <span onclick="newElement()" class="addBtn">Add</span>
+</div>
+
+<ul id="myUL">
+  <li>Hit the gym</li>
+  <li class="checked">Pay bills</li>
+   
+</ul> {% endcomment %}
+{% endblock layout %}
+
+
+
+{% block js_link %}
+  {% comment %} <script src="{% static 'doctor/js/todo.js' %}"></script> {% endcomment %}
+
+{% endblock js_link %}
+
+<!--#################################################################-->
+{% comment %} {% extends 'secure/master.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+  <link rel="stylesheet" href="{% static 'doctor/css/nav2.css' %}">
+  <link rel="stylesheet" href="{% static 'doctor/css/docnav.css' %}">
+  <style>
+    body{
+      background-color:pink;
+    }
+  </style>
+{% endblock css_link %}
+
+{% block alldata %}
+{% include 'doctor/nav2.html' %}
+
+<div class="container mt-5">
+  <div class="row mt-5">
+    <div class="text-center mt-5 h4 text-black">
+<a onclick="openNav()" style="cursor: pointer;" class=""><i class="fas fa-tasks " style="font-size:35px;"></i></a>
+      Today's appointment
+    </div>
+    <hr>
+  </div>
+</div> {% endcomment %}
+{% comment %} 
+<div class="container mt-5">
+  <div class="row">
+    {% if today_my %}
+    {% for dt in today_my %}
+      <div class="col-sm-3">
+        <div class="card shadow shadow-lg">
+          <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+            {% if dt.img %}
+              <img
+                src="{{dt.img.url}}"
+                class="img-fluid"
+                />
+              {% else %}
+                <img
+                src="{% static 'patient/img/default.png' %}"
+                class="img-fluid"
+                />
+              {% endif %}
+            <a href="#!">
+              <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+            </a>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Name: {{dt.patient}}</h5>
+            <h5 class="card-title">App* date: {{dt.when}}</h5>            
+            <p class="card-text">
+            </p>
+            <form action="{% url 'dele1' dt.id %}" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            <a href="" class="btn btn-success">view data</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    {% else %}
+
+          <div class="text-capitalize text-center mt-3 h3 text-black">{{date}}</div>
+          <hr>
+          <div>
+            <center><img src="{% static 'doctor/img/today.png' %}" width="450px" class="" alt="" srcset=""></center>
+            <div class="text-center h1 text-danger">No today's appointment</div>
+          </div>
+
+    {% endif %}
+  </div>
+</div> {% endcomment %}
+
+
+{% comment %} {% include 'doctor/docnav.html' %}
+
+ 
+{% include 'account/footer.html' %}
+{% endblock alldata %}
+
+ 
+
+
+
+{% block js_link %}
+    <script src="{% static 'js/nav.js' %}"></script>
+    <script src="{% static 'doctor/js/docnav.js' %}"></script>
+
+{% endblock js_link %} {% endcomment %}
+

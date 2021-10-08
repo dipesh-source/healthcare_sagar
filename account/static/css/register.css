@@ -1,0 +1,34 @@
+/* body{
+    background-image: url("./im1.jpeg");
+    background-size: cover;
+} */
+/* body::before{
+    content: "";
+    background-image: url("./back1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    opacity: 0.8;
+} */
+.form{
+    background-color: white;
+    
+}
+.set{
+    background-image: url('./footer-bg.jpg');
+    background-size: cover;
+}
+.get{
+    background-image: url('./im1.jpeg');
+}
+/* .pet{
+    background-image: url('./im2.jpeg');
+} */
+.back{
+    background-image: url('./hello1.jpg');
+    background-size: cover;
+}

@@ -1,0 +1,70 @@
+{% extends "account/master.html" %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/privacy.css' %}">
+{% endblock css_link %}
+
+{% block alldata %}
+
+<div class="main-header">
+    <div class="heading">
+        <h2>protecting your privacy</h2>
+    <h2>
+        <span>starts with</span>
+        <span class="text-primary">the world's most advanced security.</span>
+    </h2>
+    </div>
+</div>
+
+<div class="container1">
+    <section class="card1">
+        <img src="{% static 'img/password.png' %}" class="img-fluid shadow-lg" alt="">
+        <div>
+            <h3>heading</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit illum aspernatur commodi nesciunt exercitationem libero voluptates delectus, obcaecati saepe deleniti accusantium, cupiditate ipsum quas, suscipit provident quaerat inventore illo optio modi! Praesentium nisi enim voluptatibus culpa quibusdam. Alias optio libero enim voluptatibus rerum, ad pariatur autem asperiores quae aliquam facere!</p>
+        </div>
+    </section>
+        <section class="card1">
+        <img src="{% static 'img/privacy-sandbox-about.png' %}" class="img-fluid shadow-lg" alt="">
+        <div>
+            <h3>heading</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit illum aspernatur commodi nesciunt exercitationem libero voluptates delectus, obcaecati saepe deleniti accusantium, cupiditate ipsum quas, suscipit provident quaerat inventore illo optio modi! Praesentium nisi enim voluptatibus culpa quibusdam. Alias optio libero enim voluptatibus rerum, ad pariatur autem asperiores quae aliquam facere!</p>
+        </div>
+    </section>
+        <section class="card1">
+            <img src="{% static 'img/lock.png' %}" class="img-fluid shadow-lg" alt="">
+        <div>
+            <h3>heading</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit illum aspernatur commodi nesciunt exercitationem libero voluptates delectus, obcaecati saepe deleniti accusantium, cupiditate ipsum quas, suscipit provident quaerat inventore illo optio modi! Praesentium nisi enim voluptatibus culpa quibusdam. Alias optio libero enim voluptatibus rerum, ad pariatur autem asperiores quae aliquam facere!</p>
+        </div>
+    </section>
+        <section class="card1">
+            <img src="{% static 'img/google-security.png' %}" class="img-fluid shadow-lg" alt="">
+        <div>
+            <h3>heading</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit illum aspernatur commodi nesciunt exercitationem libero voluptates delectus, obcaecati saepe deleniti accusantium, cupiditate ipsum quas, suscipit provident quaerat inventore illo optio modi! Praesentium nisi enim voluptatibus culpa quibusdam. Alias optio libero enim voluptatibus rerum, ad pariatur autem asperiores quae aliquam facere!</p>
+        </div>
+    </section>
+        <section class="card1">
+            <img src="{% static 'img/privacy.png' %}" class="img-fluid shadow-lg" alt="">
+        <div>
+            <h3>heading</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit illum aspernatur commodi nesciunt exercitationem libero voluptates delectus, obcaecati saepe deleniti accusantium, cupiditate ipsum quas, suscipit provident quaerat inventore illo optio modi! Praesentium nisi enim voluptatibus culpa quibusdam. Alias optio libero enim voluptatibus rerum, ad pariatur autem asperiores quae aliquam facere!</p>
+        </div>
+    </section>
+</div>
+
+
+<script>
+    AOS.init();
+  </script>
+{% include 'account/footer.html' %}
+{% endblock alldata %}
+
+{% block js_link %}
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+{% endblock js_link %}
+

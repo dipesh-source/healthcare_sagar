@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Admin Panel</title>
+	<!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'adminapp/css1/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'adminapp/css1/mdb.min.css' %}" rel="stylesheet">
+  <style>
+		/* Only for snippet */
+.double-nav .breadcrumb-dn {
+  color: #fff;
+}
+.button-collapse i {
+  color: #fff
+}
+	</style>
+  </head>
+  <body class="fixed-sn black-skin">
+    <!--Double navigation-->
+   <header>
+      <!-- Sidebar navigation -->
+        {% include 'secure/sidenav.html' %}
+      <!--/. Sidebar navigation -->
+
+      <!-- Navbar -->
+        {% include 'secure/newnav.html' %}
+      <!-- /.Navbar -->
+
+    </header>
+    <!--/.Double navigation-->
+<!--Main layout-->
+ <main>
+    <div class="container">
+        <div class="alert alert-primary h3 text-center pb-1 pt-1">Summery of Healthcare..!</div>
+    <div class="row">
+        <div class="col-sm-3">
+        <div class="card shadow-lg">
+            <img
+            src="{% static 'adminapp/img/doc1.jpg' %}"
+            class="card-img-top waves-light"
+            alt="..."
+            />
+            <div class="card-body bg-dark">
+            <h5 class="card-title text-center text-white">Our Doctor's: <b style="color:red">{{data2}}</b></h5>
+            <center><a href="{% url 'doctors' %}" class="btn btn-warning" style="width:100%;">Get more info</a></center>
+            </div>
+        </div>
+        </div>
+        <div class="col-sm-3">
+        <div class="card shadow-lg">
+            <img
+            src="{% static 'adminapp/img/pat2.jpg' %}"
+            class="card-img-top waves-light"
+            alt="..."
+            />
+            <div class="card-body bg-dark">
+            <h5 class="card-title text-center text-white">All Patients: <b style="color:red">{{data1}}</b></h5>
+            <center><a href="{% url 'patients' %}" class="btn btn-warning" style="width:100%;">Get more info</a></center>
+            </div>
+        </div>
+        </div>
+        <div class="col-sm-3">
+        <div class="card shadow-lg">
+            <img
+            src="{% static 'adminapp/img/app1.jpg' %}"
+            class="card-img-top waves-light"
+            alt="..."
+            />
+            <div class="card-body bg-dark">
+            <h5 class="card-title text-center text-white">Total Appointment: <b style="color:red">{{data3}}</b></h5>
+            <h1></h1>
+                <center><a href="{% url 'view' %}" class="btn btn-warning" style="width:100%;">Get more info</a></center>
+            </div>
+        </div>
+        </div>
+        <div class="col-sm-3">
+        <div class="card shadow-lg">
+            <img
+            src="{% static 'adminapp/img/user2.jpg' %}"
+            class="card-img-top waves-light"
+            alt="..."
+            />
+            <div class="card-body bg-dark">
+            <h5 class="card-title text-center text-white">Total User's: <b style="color:red;">{{data4}}</b></h5>
+            <center><a href="#!" class="btn btn-warning" style="width:100%;">Get more info</a></center>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+    <div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Subscribe our Newsletter</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+				<p>Subscribe to our mailing list to get the latest updates straight in your inbox.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email Address">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+<!--/Main layout-->
+
+    <!--footer-->
+        <div class="">{% include 'secure/newfooter.html' %}</div>
+    <!--/footer-->
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="{% static 'adminapp/js1/jquery-3.3.1.min.js' %}"></script>
+    <!-- Tooltips -->
+    <script type="text/javascript" src="{% static 'adminapp/js1/popper.min.js' %}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{% static 'adminapp/js1/bootstrap.min.js' %}"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{% static 'adminapp/js1/mdb.min.js' %}"></script>
+	
+    <script>
+    $(document).ready(() => {
+  // SideNav Initialization
+  $(".button-collapse").sideNav();
+	new WOW().init();
+	}) 
+ 
+	$(document).ready(function(){
+		$("#myModal").modal('show');
+	});
+ 
+    </script>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+{% extends 'secure/master2.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+    <link rel="stylesheet" href="{% static 'css/mdb.min.css' %}" />
+
+    <style>
+        .change{
+            color:red;
+        }
+        .ch{
+            background-color:whitesmoke;
+        }
+    </style>
+{% endblock css_link %}
+{% block layout %}
+    <div class="text-center text-dark h2">Available Doctor's</div>
+    <hr>
+    <div class="row">
+        {% for dt in data1 %}
+            <div class="col-sm-3">
+            <!-- Card -->
+            <div class="card testimonial-card">
+
+            <!-- Background color -->
+            <div class="card-up aqua-gradient lighten-1"></div>
+
+            <!-- Avatar -->
+            <div class="avatar mx-auto white">
+            {% if dt.profile %}
+                <img src="{{dt.profile.url}}" class="rounded-circle"
+                alt="woman avatar" style="height:110px;"> 
+                {% else %}
+                        <img
+                        src="{% static 'patient/img/default.png' %}"
+                        class="img-fluid"
+                        />
+                {% endif %}
+                
+            </div>
+
+            <!-- Content -->
+            <div class="card-body">
+                <!-- Name -->
+                <h5 class="card-title text-black">{{dt.username}}</h5>
+                {% if dt.master %}  
+                    <div class="card-text text-center text-info h5">Speciality:  <b>{{dt.master}}</b></div>
+                {% else %}
+                    <div class="text-danger text-center">Speciality: <b>Not updated</b></div>
+                {% endif %}
+                <!-- Quotation -->
+                <p><i class="fas fa-quote-left"></i> Lorem ipsum dolor </p>
+                <a href="" class="btn btn-success  ">View doctor profile</a>
+                    <form action="{% url 'delete_doc' dt.id %}" method="POST" novalidate>
+                    {% csrf_token %}
+                        {% comment %} <button type="submit" class="btn btn-danger">Delete Doctor</button> {% endcomment %}
+                     
+                    <!--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-->
+
+                        <!-- Button trigger modal-->
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalConfirmDelete">Delete</button>
+
+                    <!--Modal: modalConfirmDelete-->
+                    <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+                        <!--Content-->
+                        <div class="modal-content text-center">
+                        <!--Header-->
+                        <div class="modal-header d-flex justify-content-center">
+                            <p class="heading">Are you sure?</p>
+                        </div>
+
+                        
+                        <!--Footer-->
+                        <div class="modal-footer flex-center">
+                            <button type="submit" class="btn btn-danger">Yes</button>
+
+                            <a type="button" class="btn  btn-success waves-effect" data-dismiss="modal">No</a>
+                        </div>
+                        </div>
+                        <!--/.Content-->
+                    </div>
+                    </div>
+                    <!--Modal: modalConfirmDelete-->
+
+                    <!--######################################################-->
+                    
+                    </form>
+            </div>
+
+            </div> <hr>
+            <!-- Card -->
+                {% comment %} <div class="card">
+                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                   {% if dt.profile %}
+                     <img
+                    src="{{dt.profile.url}}"
+                    class="img-fluid"
+                    />
+                    {% else %}
+                         <img
+                        src="{% static 'patient/img/default.png' %}"
+                        class="img-fluid"
+                        />
+                   {% endif %}
+                    <a href="">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </a>
+                </div>
+                <div class="card-body bg-dark">
+                    <h5 class="card-title text-white text-center">Name: {{dt.username}}</h5>
+                        {% if dt.master %}  
+                            <div class="card-text text-center text-info h5">Speciality:  <b>{{dt.master}}</b></div>
+                        {% else %}
+                            <div class="text-danger text-center">Speciality: <b>Not updated</b></div>
+                        {% endif %}
+
+                    <div>
+                        <a href="" class="btn btn-success  ">View doctor profile</a>
+                        <form action="{% url 'delete_doc' dt.id %}" method="POST" novalidate>
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Delete Doctor</button>
+                        </form>
+                    </div>
+                    
+                </div>
+                </div> {% endcomment %}
+            </div> 
+        {% endfor %} 
+    </div>
+    <hr>
+{% endblock layout %}
+
+
+{% block js_link %}
+    <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+
+{% endblock js_link %}

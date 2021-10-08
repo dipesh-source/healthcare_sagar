@@ -1,0 +1,48 @@
+{% extends "doctor/doc_master.html" %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+    <style>
+      body{
+        background-color:whitesmoke;
+      }
+    </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+
+{% endblock css_link %}
+
+
+{% block layout %}
+ <div class="container">
+<a href="{% url 'dochome' %}">homepage</a>
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <form action="" method="POST" class="shadow shadow-lg p-3 mb-6">
+                    {% csrf_token %}
+                        {% if messages %}
+                            {% for mes in messages %}
+                                <div class="alert alert-info text-center h3 pb-2 pt-2">{{mes}}</div>
+                            {% endfor %}
+                        {% endif %}
+                        {% if form %}
+                            {{form.when.label_tag}} <br>
+                            {{form.when}} <br>
+                            {{form.when.errors|striptags}}
+                        {% endif %}
+                        {% comment %} <input type="submit" value="submit"> {% endcomment %}
+                    <button type="submit" class="btn btn-secondary">update date</button>
+                </form>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+    </div> <br><br>
+
+{% endblock layout %}
+
+
+
+{% block js_link %}
+
+{% endblock js_link %}

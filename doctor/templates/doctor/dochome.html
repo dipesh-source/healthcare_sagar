@@ -1,0 +1,224 @@
+{% extends "doctor/doc_master.html" %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+  {% comment %} <link rel="stylesheet" href="{% static 'doctor/css/dragg.css' %}"> {% endcomment %}
+    <style>
+      body{
+        background-color:whitesmoke;
+      }
+      
+    </style>
+{% endblock css_link %}
+
+
+{% block layout %}
+
+<!--##################################################-->
+<div class="container-fluid text-center">
+
+        <!--Card-->
+        <div class="card card-cascade wider reverse my-4 pb-5">
+
+          <!--Card image-->
+          <div class="view view-cascade overlay wow fadeIn">
+            <img src="{% static 'css/bg_3.jpg' %}" class="img-fluid">
+            <a href="#!">
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+          <!--/Card image-->
+
+          <!--Card content-->
+          <div class="card-body card-body-cascade text-center wow fadeIn   shadow shadow-lg" data-wow-delay="0.2s">
+            <!--Title-->
+            <h4 class="card-title"><strong>Hello, {{request.user.username}}...</strong></h4>
+            <hr>
+            <h5 class="black-text"><strong class=" ">"Wherever the art of Medicine is loved, there is also a love of Humanity. ”</strong></h5>
+            <div class="float-right mr-5">― Hippocrates</div>  <br>
+            {% comment %} <p class="card-text">Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque
+              laudantium, totam rem aperiam.
+            </p> {% endcomment %}
+            <center>
+            <a class="btn btn-default btn-lg btn-rounded peach-gradient">Default button</a>
+            <a class="btn btn-primary btn-lg btn-rounded purple-gradient">Primary button</a>
+            <a class="btn btn-secondary btn-lg btn-rounded blue-gradient">Secondary button</a>
+            </center>
+          </div>
+          <!--/.Card content-->
+
+        </div>
+        <!--/.Card-->
+
+      </div>
+
+   
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">      
+      <!-- Card -->
+      <div class="card card-cascade narrower">
+      <!-- Card image -->
+      <div class="view view-cascade gradient-card-header purple-gradient">
+        <!-- Title -->
+        <h4 class="card-header-title text-black">Today's appointment</h4>
+      </div>
+      <!-- Card content -->
+      <div class="card-body card-body-cascade text-center">
+        <!-- Text -->
+         <h1>{{today_app}}</h1>
+        <p class="card-text">Lorem ip it. Voluptatibus, ex, recusandae.</p>
+        <a href="{% url 'today' %}" class="btn btn-success  btn-rounded  blue-gradient">view more data</a>
+      </div>
+  
+    </div> <br><br>
+    <!-- Card -->
+    </div>
+    <div class="col-sm-3">
+      
+          <!-- Card -->
+      <div class="card card-cascade narrower">
+      <!-- Card image -->
+      <div class="view view-cascade gradient-card-header peach-gradient">
+        <!-- Title -->
+        <h4 class="card-header-title">Upcoming appointment</h4>
+      </div>
+      <!-- Card content -->
+      <div class="card-body card-body-cascade text-center">
+        <!-- Text -->
+       <h1>{{pand_app}}</h1>
+        <p class="card-text">Lorem ip it. Voluptatibus, ex, recusandae.</p>
+        <a href="{% url 'dash' %}" class="btn btn-danger btn-rounded  aqua-gradient
+">view more data</a>
+      </div>
+    </div> <br><br>
+    <!-- Card -->
+    </div>
+    <div class="col-sm-3">
+            <!-- Card -->
+      <div class="card card-cascade narrower">
+      <!-- Card image -->
+      <div class="view view-cascade gradient-card-header blue-gradient">
+        <!-- Title -->
+        <h4 class="card-header-title text-black">Missing appointment</h4>
+      </div>
+      <!-- Card content -->
+      <div class="card-body card-body-cascade text-center">
+        <!-- Text -->
+        <h1>{{miss_app}}</h1>
+        <p class="card-text">Lorem ip it. Voluptatibus, ex, recusandae.</p>
+        <a href="{% url 'missing' %}" class="btn btn-warning btn-rounded purple-gradient">view more data</a>
+      </div>
+    </div> <br><br><br>
+    <!-- Card -->
+    </div>
+ 
+    <div class="col-sm-3">
+            <!-- Card -->
+      <div class="card card-cascade narrower">
+      <!-- Card image -->
+      <div class="view view-cascade gradient-card-header aqua-gradient">
+        <!-- Title -->
+        <h4 class="card-header-title">{{request.user.username}}'s <div>Patient's </div></h4>
+      </div>
+      <!-- Card content -->
+      <div class="card-body card-body-cascade text-center">
+        <!-- Text -->
+        <h1>{{mypat}}</h1>
+        <p class="card-text">Lorem ip it. Voluptatibus, ex, recusandae.</p>
+        <a href="{% url 'my_pat' %}" class="btn btn-warning  btn-rounded peach-gradient">view more data</a>
+      </div>
+    </div> <br><br><br>
+    <!-- Card -->
+   
+    </div>
+  </div>
+</div>
+
+<!--##############################################-->
+{% endblock layout %}
+
+
+
+{% block js_link %}
+  {% comment %} <script src="{% static 'doctor/js/dragg.js' %}"></script> {% endcomment %}
+{% endblock js_link %}
+
+
+
+
+
+
+{% comment %} 
+{% extends 'secure/master.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+     <link rel="stylesheet" href="{% static 'css/nav3.css' %}">
+{% endblock css_link %}
+
+{% block alldata %}
+{% include 'doctor/dash_nav.html' %} {% endcomment %}
+
+
+ 
+{% comment %} 
+{% include 'account/footer.html' %}
+{% endblock alldata %}
+
+
+{% block js_link %}
+    <script src="{% static 'js/nav.js' %}"></script>
+
+
+{% endblock js_link %} {% endcomment %}
+
+
+<!--##################################################-->
+  {% comment %} <div class="container mt-5">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+        <div class="card-header h4">Today's appointment</div>
+        <div class="card-body">
+          <h5 class="card-title">Primary card title</h5>
+          <h1>{{today_app}}</h1>
+        <div>
+          <a href="{% url 'today' %}" class="btn btn-primary">view more data</a>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="col-sm-4">
+      <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+        <div class="card-header h4">Panding appointment</div>
+        <div class="card-body">
+          <h5 class="card-title">Primary card title</h5>
+          <h2>{{pand_app}}</h2>
+        <div>
+          <a href="{% url 'dash' %}" class="btn btn-primary">view more data</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card text text-white bg-dark mb-3" style="max-width: 18rem;">
+      <div class="card-header h4">Header</div>
+        <div class="card-body">
+          <h5 class="card-title">Primary card title</h5>
+          <div>
+            <a href="" class="btn btn-primary">view more data</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div> {% endcomment %}
+<!--############################################-->
+
+
+ 

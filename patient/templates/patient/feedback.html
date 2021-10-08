@@ -1,0 +1,79 @@
+{% extends 'patient/pat_master.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+  <link rel="stylesheet" href="{% static 'patient/css/doc_find.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'patient/css/nav_extra.css' %}"> {% endcomment %}
+    <style>
+     body{
+    background-color: pink;
+  }
+    .error{
+        color:red;
+    } 
+      
+    </style>
+{% endblock css_link %}}
+{% block header %}
+    {% include 'patient/success_nav.html' %}
+{% endblock header %}
+
+
+{% block alldata %}
+ 
+ 
+<div class="container mt-5">
+    <div class="row">
+        <div class="class   col-sm-6   mb-10 mt-5"  >
+            <img src="{% static 'patient/img/pink.png' %}"  style="margin-top:16%;" class="img-fluid" alt="">
+        </div>
+        <div class="class col-sm-6 mb-10 mt-5">
+             <form action="" method="POST" class="p-5 shadow" style="background-color:white;" novalidate>
+                <div class="h2 font-weight-bold text-black font-italic">Feedback</div>
+                <hr>
+                {% csrf_token %}
+                {% if messages %}
+                    {% for mes in messages %}
+                        <div class="alert alert-danger h3 text text-black text-center pb-1 pt-1">{{mes}}</div>
+                    {% endfor %}
+                {% endif %}
+                {% if form %}
+                    {% for fm in form %}
+                        {{fm.non_field_error}}
+                    {% endfor %}
+                {% endif %}
+                {% if form %}
+
+                    {{form.select}}
+                    <div class="error">{{form.select.errors|striptags}}</div><br>
+                    <div class="md-form">
+                    {{form.text}}
+                    <label class="form-label" for="form1">{{form.text.label_tag}}</label>
+                    </div>
+                    {% comment %} <div class="error">{{form.text.errors|striptags}}</div> {% endcomment %}
+                    <br>
+                    <div class="form-outline">
+                    {{form.excplain}}
+                    <label class="form-label" for="form1">{{form.excplain.label_tag}}</label>
+                    </div>
+                    <div class="error">{{form.excplain.errors|striptags}}</div>
+                    <br>
+                <button type="submit" class="btn btn-danger btn-lg">Give Feedback</button>
+                {% endif %}
+             </form>
+        </div>
+        
+    </div>
+</div>
+
+{% endblock alldata %}
+
+
+
+{% block js_link %}
+ 
+    <script src="{% static 'js/nav.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{% endblock js_link %}

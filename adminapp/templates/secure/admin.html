@@ -1,0 +1,29 @@
+{% extends "secure/master.html" %}
+{% load static %}
+{% load cache %}
+{% block css_link %}
+    {% comment %} <link rel="stylesheet" href="{% static "adminapp/css/naviga.css" %}">
+    <link rel="stylesheet" href="{% static "adminapp/css/hover.css" %}">
+    <link rel="stylesheet" href="{% static "adminapp/css/off_canva.css" %}">
+    <link rel="stylesheet" href="{% static "adminapp/css/side.css" %}"> {% endcomment %}
+    <link rel="stylesheet" href="{% static "adminapp/css/bootstrap.min.css" %}">  
+{% endblock css_link %}
+
+{% block alldata %} 
+
+{% include 'secure/nav.html' %}
+
+{% comment %} {% include "secure/smallside.html" %} {% endcomment %}
+    <a href="{% url 'ulogout' %}">Log Out</a>
+    
+{% endblock alldata %}
+
+{% block js_link %}
+    <script src="{% static "adminapp/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "adminapp/js/jquery.min.js" %}"></script>
+    <script src="{% static "adminapp/js/main.js" %}"></script>
+    <script src="{% static 'adminapp/js/popper.js' %}"></script>
+    {% comment %} <script src="{% static "adminapp/js/side.js" %}"></script>
+    <script src="{% static "adminapp/js/off_canva.js" %}"></script>
+    <script src="{% static "adminapp/js/naviga.js" %}"></script> {% endcomment %}
+{% endblock js_link %}

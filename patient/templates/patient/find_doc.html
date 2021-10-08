@@ -1,0 +1,93 @@
+{% extends 'patient/pat_master.html' %}
+{% load static %}
+{% load cache %}
+
+{% block css_link %}
+  <link rel="stylesheet" href="{% static 'patient/css/doc_find.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'patient/css/nav2.css' %}"> {% endcomment %}
+    <style>
+     .error{
+       color:red;
+     } 
+      
+    </style>
+{% endblock css_link %}
+
+ 
+
+{% block header %}
+    <div class="">{% include 'patient/success_nav.html' %}</div> 
+    <div class="row">
+        <img src="{% static 'patient/img/h1_hero.png' %}" class="img-fluid" alt="" srcset="">
+    </div>
+{% endblock header %}
+
+
+
+{% block alldata %}
+{% comment %} {% include 'patient/nav2.html' %} {% endcomment %}
+ 
+    <div class="data">
+        <div class="text-center se">search doctor</div>
+    </div>
+<div class="container mt-5">
+    {% if request.user.is_authenticated %}
+        <form class="form-inline my-2 my-lg-0" action="/patient_site/our_doctors">
+            <input class="form-control mr-sm-2" type="search" name="query" id="search" placeholder="Search doctor or category" aria-label="Search" autofocus>
+            <button class="form-text btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    {% else %}
+        <div class="alert alert-danger h4 text-center pb-3 pt-3">Please, Login your account</div>
+        <p class="text-black text-center">Restricted for new user's</p>
+        <center>
+        <a href="{% url 'login' %}" class="btn btn-primary btn-lg text-center">Login account</a>
+        </center>
+    {% endif %}
+</div>
+<section class="doctorcard">
+<div class="container mt-5" style="background-color:whitesmoke">
+        <div class="data">
+            <h1 class="text-center">Our Qualified Doctors</h1>
+            <hr>
+            <p class="text-center text-justify">Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            {% for qa in quali %}
+                <div class="col-sm-3">
+                    <div class="card shadow shadow-lg  hover-overlay ripple"><!--data-mdb-ripple-color="light"-->
+                    <img
+                        src="{{qa.img.url}}"
+                        class="card-img-top"
+                        alt="..."
+                    />
+                    <div class="card-body bg-dark">
+                        <h5 class="card-title text-center" style="color:white;">{{qa.name}}</h5>
+                        <p class="text-center mb-0" style="color:white;">
+                            {{qa.mas}}
+                        </p>
+                                {% comment %} <a href="#!" class="btn btn-primary">Button</a> {% endcomment %}
+                    {% comment %} <button type="submit" class="btn btn-primary" style="width:100%;">Book Now</button> {% endcomment %}
+                    </div>
+             </div>
+             <br> 
+            </div> 
+        {% endfor %}
+    </div>
+</div>
+<hr>
+</section>
+
+
+ 
+{% endblock alldata %}
+
+
+
+{% block js_link %}
+ 
+    <script src="{% static 'js/nav.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{% endblock js_link %}
